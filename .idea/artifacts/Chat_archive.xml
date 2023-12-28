@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Chat archive">
+    <output-path>$PROJECT_DIR$/out/artifacts/Chat_archive</output-path>
+    <root id="archive" name="Chat archive.war">
+      <element id="artifact" artifact-name="Chat" />
+      <element id="javaee-facet-resources" facet="BazarChat/web/Web" />
+    </root>
+  </artifact>
+</component>
