@@ -1,6 +1,6 @@
 body {
-    background-color: #333; /* Dark background color */
-    color: #fff; /* Light text color */
+    background-color: #fff; /* Dark background color */
+    color: #333; /* Light text color */
     font-family: 'lucida console', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
@@ -36,8 +36,8 @@ p {
 
 
 .tile {
-    background-color: #444; /* Dark tile background color */
-    color: #fff; /* Light text color */
+    background-color:#fff; /* Dark tile background color */
+    color:  #444; /* Light text color */
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -49,7 +49,7 @@ h2 {
 
 
 .message {
-    background-color: #555; /* Dark message background color */
+    background-color:#e4e4e4; /* Dark message background color */
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -62,8 +62,8 @@ h2 {
     border-radius: 50px;
     border: none;
     
-    background-color: #666; /* Dark input background color */
-    color: #fff; /* Light text color */
+    background-color: #e4e4e4; /* Dark input background color */
+    color:  #444; /* Light text color */
 }
 
 #messageForm {
@@ -72,8 +72,8 @@ h2 {
 }
 
 button {
-    background-color: #666; /* Dark button background color */
-    color: #fff; /* Light text color */
+    background-color:#fff; /* Dark button background color */
+    color: #666; /* Light text color */
     padding: 12px 20px;
     margin-left: 10px;
     border: none;
@@ -106,12 +106,12 @@ button {
 
 
 .emoji-button:hover {
-    background-color: #2980b9;
+    background-color: #a3a3a3;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #a3a3a3;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
 }
 .clock {
@@ -207,7 +207,7 @@ h1, h2, h3 {
 .profile-button {
     padding: 10px 20px;
     margin-top: auto;
-    color: #fff;
+    color: #666;
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -215,7 +215,7 @@ h1, h2, h3 {
 }
 
 .profile-button:hover {
-    background-color: #2980b9;
+    background-color: #a3a3a3;
 }
 
 /* Your existing styles here */
@@ -287,7 +287,7 @@ h1, h2, h3 {
 .edit-profile-button {
     padding: 10px 20px;
     
-    color: #fff;
+    color: #666;
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -295,7 +295,7 @@ h1, h2, h3 {
 }
 
 .edit-profile-button:hover {
-    background-color: #2980b9; /* Darker shade on hover */
+    background-color: #a3a3a3; /* Darker shade on hover */
 }
 
 .header-buttons {
@@ -306,8 +306,8 @@ h1, h2, h3 {
 }
 
 .theme-switch-button, .login-button {
-    background-color: #666; /* Dark button background color */
-    color: #fff; /* Light text color */
+    background-color:#fff; /* Dark button background color */
+    color:  #666; /* Light text color */
     margin-left: 10px;
     height: 50px;
     width: fit-content;
@@ -319,9 +319,13 @@ h1, h2, h3 {
 }
 
 .theme-switch-button:hover, .login-button:hover {
-    background-color: #2980b9;
+    background-color: #a3a3a3;
 }
 
 .login-button{
     width: 100px;
+}
+
+form{
+    margin: 0;
 }

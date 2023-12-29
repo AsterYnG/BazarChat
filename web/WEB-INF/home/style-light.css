@@ -325,3 +325,7 @@ h1, h2, h3 {
 .login-button{
     width: 100px;
 }
+
+form{
+    margin: 0;
+}

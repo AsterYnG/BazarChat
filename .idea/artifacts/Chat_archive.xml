@@ -4,6 +4,12 @@
     <root id="archive" name="Chat archive.war">
       <element id="artifact" artifact-name="Chat" />
       <element id="javaee-facet-resources" facet="BazarChat/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0" />
+          <element id="library" level="project" name="Maven: jakarta.servlet:jakarta.servlet-api:5.0.0" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>
