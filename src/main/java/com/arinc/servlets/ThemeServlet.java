@@ -18,6 +18,9 @@ public class ThemeServlet extends HttpServlet {
         resp.sendRedirect("/home");
     }
     private void checkTheme(HttpServletRequest req, HttpServletResponse resp){
+        if (req.getSession().isNew()){
+            req.getSession().setAttribute("theme","light");
+        }
         if (req.getParameter("theme") != null) {
             if(req.getSession().getAttribute("theme").toString().equals("dark")){
                 req.getSession().setAttribute("theme","light");
