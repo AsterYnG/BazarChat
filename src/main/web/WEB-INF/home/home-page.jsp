@@ -75,8 +75,6 @@
         <button class="edit-profile-button">Edit Profile</button>
     </div>
 </div>
-
-
 </body>
 </html>
 

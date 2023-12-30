@@ -25,7 +25,6 @@ public class EntityBuilder {
                 .customerId(resultSet.getObject("customer_id",Integer.class))
                 .login(resultSet.getObject("login",String.class))
                 .password(resultSet.getObject("password",String.class))
-                .roleId(buildRole(resultSet))
                 .build();
     }
 
