@@ -22,3 +22,4 @@ public class CustomerService {
         return customerEntity.map(customerMapper::mapFrom);
     }
 }
+

@@ -15,9 +15,7 @@ import java.util.Set;
 public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getSession().isNew()){
-            req.getSession().setAttribute("theme","light");
-        }
+
         req.getRequestDispatcher("WEB-INF/home/home-page.jsp").forward(req,resp);
     }
 }

@@ -6,13 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <script >
-        <%@include file="script.js"%>
-    </script>
     <c:if test="${sessionScope.theme == 'dark'}">
-    <style>
-        <%@include file="style-dark.css"%>
-    </style>
+        <style>
+            <%@include file="style-dark.css"%>
+        </style>
     </c:if>
     <c:if test="${sessionScope.theme == 'light'}">
         <style>
@@ -27,7 +24,9 @@
     <h1>BazarChat</h1>
     <div class="header-buttons">
         <form action="/theme" method="get">
-        <button class="theme-switch-button" name="theme" value="swap" ><c:if test="${sessionScope.theme == 'dark'}">&#127774;</c:if> <c:if test="${sessionScope.theme == 'light'}">&#127769;</c:if> </button>
+            <button class="theme-switch-button" name="theme" value="swap"><c:if
+                    test="${sessionScope.theme == 'dark'}">&#127774;</c:if> <c:if
+                    test="${sessionScope.theme == 'light'}">&#127769;</c:if></button>
         </form>
         <button class="login-button">Login</button>
     </div>
@@ -44,16 +43,17 @@
             <li>User6</li>
         </ul>
     </div>
-    <div class="chat tile">
-        <div class="message">User1: Hello!</div>
-        <div class="message">User2: Hi there!</div>
+    <div id="chat" class="chat tile">
+        <div id="message-box" class="message-box">
+
+        </div>
         <!-- Форма для отправки сообщения -->
-        <form id="messageForm">
-            <input type="text" id="messageInput" placeholder="Type your message...">
-            <button type="submit" class="emoji-button">
-                <img src="smile.png" alt="Smiley Emoji" class="emoji-icon">
-            </button>
-            <button type="submit" >BAZAR</button>
+        <form id="messageForm" action="/chat" method="post">
+            <input type="text" id="messageInput" name="message" placeholder="Type your message...">
+<%--            <button  class="emoji-button">--%>
+<%--                <img src="smile.png" alt="Smiley Emoji" class="emoji-icon">--%>
+<%--            </button>--%>
+            <button type="submit">BAZAR</button>
         </form>
     </div>
 
@@ -62,7 +62,7 @@
         <p id="clockDisplay">Loading...</p>
     </div>
     <div class="profile-tile tile">
-        <h2>Хуй знает что</h2>
+        <h2>знает что</h2>
         <button class="profile-button">Ну чет делает</button>
     </div>
     <div class="profile-info-tile tile">
@@ -75,6 +75,9 @@
         <button class="edit-profile-button">Edit Profile</button>
     </div>
 </div>
+    <script>
+        <%@include file="script.js"%>
+    </script>
 </body>
 </html>
 

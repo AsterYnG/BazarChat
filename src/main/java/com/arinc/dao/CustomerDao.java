@@ -5,9 +5,6 @@ import com.arinc.util.ConnectionManager;
 import com.arinc.util.EntityBuilder;
 import lombok.Cleanup;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -43,8 +40,7 @@ public class CustomerDao implements Dao<Integer, Customer> {
     }
 
     @Override
-    public Customer save(Customer entity) {
-        return null;
+    public void save(Customer entity) {
     }
 
     public Optional<Customer> findByLoginAndPassword(String login, String password) {
