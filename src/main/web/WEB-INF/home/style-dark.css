@@ -53,6 +53,7 @@ h2 {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
+    overflow-wrap: break-word;
 }
 
 #messageInput {
@@ -327,4 +328,11 @@ h1, h2, h3 {
 }
 form{
 margin: 0;
+}
+
+.message-box{
+    flex-grow: 1; /* Блок message-box будет занимать все доступное свободное пространство */
+    overflow-y: auto;
+    margin-bottom: 10px;
+    overflow-x: hidden;
 }

@@ -22,7 +22,7 @@ async function getLastMessages() {
             box.appendChild(div);
             }
         }
-
+        box.scrollTop = box.scrollHeight;
 
     } else window.alert("GG");
 
@@ -72,6 +72,8 @@ async function sendMessage(event){
         window.alert("Form pushing error");
     }
     document.getElementById("messageInput").value = '';
+   let box = document.getElementById('message-box');
+
 }
 
 
