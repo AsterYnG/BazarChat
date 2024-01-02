@@ -28,7 +28,9 @@
                     test="${sessionScope.theme == 'dark'}">&#127774;</c:if> <c:if
                     test="${sessionScope.theme == 'light'}">&#127769;</c:if></button>
         </form>
-        <button class="login-button">Login</button>
+        <form action="/login" method="get">
+            <button class="login-button">Login</button>
+        </form>
     </div>
 </div>
 <div class="container">
