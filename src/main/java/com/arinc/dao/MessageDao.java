@@ -30,7 +30,7 @@ public class MessageDao implements Dao<Integer, Message> {
             """;
 
     private final String SAVE = """
-            INSERT INTO messages(message, customer_id) VALUES (?,?);
+            INSERT INTO messages(message, customer_id, date) VALUES (?,?, now());
             """;
 
 

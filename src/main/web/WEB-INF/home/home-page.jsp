@@ -31,18 +31,18 @@
         <form action="/login" method="get">
             <button class="login-button">Login</button>
         </form>
+        <form action="/logout" method="post">
+            <button class="login-button">Logout</button>
+        </form>
     </div>
 </div>
 <div class="container">
     <div class="online-users-tile tile">
         <h2>Online Users</h2>
         <ul class="online-users-list">
-            <li>User1</li>
-            <li>User2</li>
-            <li>User3</li>
-            <li>User4</li>
-            <li>User5</li>
-            <li>User6</li>
+            <c:forEach items="${requestScope.onlineUsers}" var="onlineUser">
+                <li>${onlineUser.login}</li>
+            </c:forEach>
         </ul>
     </div>
     <div id="chat" class="chat tile">

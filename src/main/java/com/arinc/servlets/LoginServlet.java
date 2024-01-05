@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
 
     private void successLogin(CustomerDto customerDto, HttpServletRequest req, HttpServletResponse resp) {
         req.getSession().setAttribute("user", customerDto);
+        customerService.setOnlineTrue(customerDto);
         try {
             resp.sendRedirect("/home");
         } catch (IOException e) {

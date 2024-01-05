@@ -10,4 +10,5 @@ public class Customer {
     private String login;
     private String password;
     private Role roleId;
+    private boolean online;
 }
