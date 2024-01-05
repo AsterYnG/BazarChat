@@ -25,7 +25,8 @@ public class MessageDao implements Dao<Integer, Message> {
     }
 
     private final String SELECT_LAST = """
-            SELECT * FROM last_messages();
+            SELECT * FROM last_messages()
+             ORDER BY message_id;
             """;
 
     private final String SAVE = """

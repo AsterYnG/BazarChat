@@ -5,6 +5,8 @@ body {
     margin: 0;
     padding: 0;
     height: 77vh;
+    min-width: 514px;
+    box-sizing: border-box;
 }
 
 .container {
@@ -14,6 +16,26 @@ body {
     gap: 20px;
     padding: 20px;
     height: 100%;
+    box-sizing: border-box;
+}
+@media only screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .chat.tile {
+        grid-column: span 4;
+        grid-row: span 1;
+    }
+
+    .online-users-tile,
+    .clock.tile,
+    .profile-tile,
+    .profile-info-tile {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
 }
 
 .header-tile {

@@ -20,9 +20,10 @@ async function getLastMessages() {
             div.messageId = messages[i].messageId;
             div.textContent = messages[i].message;
             box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
             }
         }
-        box.scrollTop = box.scrollHeight;
+
 
     } else window.alert("GG");
 
@@ -72,7 +73,9 @@ async function sendMessage(event){
         window.alert("Form pushing error");
     }
     document.getElementById("messageInput").value = '';
+
    let box = document.getElementById('message-box');
+
 
 }
 
@@ -81,7 +84,7 @@ async function sendMessage(event){
 // Обновляем часы каждую секунду
 setInterval(updateClock, 1000);
 
-setInterval(getLastMessages, 1000);
+setInterval(getLastMessages, 500);
 
 
 
