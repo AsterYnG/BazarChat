@@ -29,6 +29,11 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void failLogin(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            resp.sendRedirect("/login?error&login="+ req.getParameter("login"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void successLogin(CustomerDto customerDto, HttpServletRequest req, HttpServletResponse resp) {
