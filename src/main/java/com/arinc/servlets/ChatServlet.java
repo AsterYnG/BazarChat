@@ -31,7 +31,6 @@ public class ChatServlet extends HttpServlet {
         Gson gson = gsonBuilder.create();
         var json = gson.toJson(messages);
         writer.write(json);
-
     }
 
     @Override

@@ -16,7 +16,7 @@ public class EntityBuilder {
                 .message(resultSet.getObject("message",String.class))
                 .date(resultSet.getObject("date", LocalDateTime.class))
                 .messageId(resultSet.getObject("message_id", Integer.class))
-                .customerId(buildCustomer(resultSet))
+                .customer(buildCustomer(resultSet))
                 .build();
     }
 

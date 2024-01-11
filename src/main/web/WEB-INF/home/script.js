@@ -14,19 +14,37 @@ async function getLastMessages() {
         messages = await promise.json();
         let box = document.getElementById("message-box");
         for (let i = 0; i < messages.length; i++) {
-            let div = document.createElement('div');
-            if (!messageExists(messages[i].messageId)){
-            div.className = 'message';
-            div.messageId = messages[i].messageId;
-            div.textContent = messages[i].message;
-            box.appendChild(div);
-            box.scrollTop = box.scrollHeight;
-            }
+            printMessage(box,messages[i]);
         }
-
-
     } else window.alert("GG");
 
+}
+
+function printNewAuthor(box,message,lastMessage){
+    if(lastMessage === null){
+        let author = document.createElement("div");
+        author.textContent = message.customer.login;
+        box.lastElementChild.before(author);
+        return;
+    }
+    if (message.customer.login !== lastMessage.author){
+        let author = document.createElement("div");
+        author.textContent = message.customer.login;
+        box.lastElementChild.before(author);
+    }
+}
+function printMessage(box,message){
+    let div = document.createElement('div');
+    if (!messageExists(message.messageId)){ // Print only new incoming messages
+        let lastMessage = box.lastElementChild;
+        div.className = 'message';
+        div.messageId = message.messageId;
+        div.author = message.customer.login;
+        div.textContent = message.message;
+        box.appendChild(div);
+        printNewAuthor(box,message,lastMessage);
+        box.scrollTop = box.scrollHeight;
+    }
 }
 
 function messageExists(messageId) {
@@ -75,8 +93,6 @@ async function sendMessage(event){
     document.getElementById("messageInput").value = '';
 
    let box = document.getElementById('message-box');
-
-
 }
 
 

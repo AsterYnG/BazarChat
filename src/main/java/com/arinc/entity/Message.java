@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Builder
 public class Message {
     private Integer messageId;
-    private Customer customerId;
+    private Customer customer;
     private LocalDateTime date;
     private String message;
 }

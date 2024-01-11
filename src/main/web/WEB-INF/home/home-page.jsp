@@ -22,7 +22,7 @@
 <body>
 <div class="header-tile tile">
     <h1>BazarChat</h1>
-    <div class="header-buttons">
+    <div id="header-buttons" class="header-buttons">
         <form action="/theme" method="get">
             <button class="theme-switch-button" name="theme" value="swap"><c:if
                     test="${sessionScope.theme == 'dark'}">&#127774;</c:if> <c:if
@@ -37,14 +37,6 @@
     </div>
 </div>
 <div class="container">
-    <div class="online-users-tile tile">
-        <h2>Online Users</h2>
-        <ul class="online-users-list">
-            <c:forEach items="${requestScope.onlineUsers}" var="onlineUser">
-                <li>${onlineUser.login}</li>
-            </c:forEach>
-        </ul>
-    </div>
     <div id="chat" class="chat tile">
         <div id="message-box" class="message-box">
 
@@ -57,6 +49,14 @@
 <%--            </button>--%>
             <button type="submit">BAZAR</button>
         </form>
+    </div>
+    <div class="online-users-tile tile">
+        <h2>Online Users</h2>
+        <ul class="online-users-list">
+            <c:forEach items="${requestScope.onlineUsers}" var="onlineUser">
+                <li>${onlineUser.login}</li>
+            </c:forEach>
+        </ul>
     </div>
 
     <div class="clock tile">
