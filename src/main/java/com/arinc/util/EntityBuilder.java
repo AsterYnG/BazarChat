@@ -22,9 +22,10 @@ public class EntityBuilder {
 
     public static Customer buildCustomer(ResultSet resultSet) throws SQLException {
         return Customer.builder()
-                .customerId(resultSet.getObject("customer_id",Integer.class))
-                .login(resultSet.getObject("login",String.class))
-                .password(resultSet.getObject("password",String.class))
+                .customerId(resultSet.getObject("customer_id", Integer.class))
+                .login(resultSet.getObject("login", String.class))
+                .password(resultSet.getObject("password", String.class))
+                .userPic(resultSet.getString("user_pic"))
                 .build();
     }
 

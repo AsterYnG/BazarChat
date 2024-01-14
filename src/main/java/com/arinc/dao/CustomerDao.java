@@ -5,11 +5,10 @@ import com.arinc.util.ConnectionManager;
 import com.arinc.util.EntityBuilder;
 import lombok.Cleanup;
 
-import java.net.ConnectException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,7 +44,21 @@ public class CustomerDao implements Dao<Integer, Customer> {
     }
 
     @Override
-    public void save(Customer entity) {
+    public void save(Customer customer) {
+        String sql = """
+                INSERT INTO customer (login, password, user_pic)
+                VALUES (?, ?, ?)
+                """;
+        try (var connection = ConnectionManager.get()) {
+            @Cleanup var preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, customer.getLogin());
+            preparedStatement.setString(2, customer.getPassword());
+            preparedStatement.setString(3, customer.getUserPic());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Optional<Customer> findByLoginAndPassword(String login, String password) {
@@ -81,7 +94,6 @@ public class CustomerDao implements Dao<Integer, Customer> {
             var resultSet = preparedStatement.executeQuery();
             List<Customer> result = new ArrayList<>();
             while (resultSet.next()) {
-                // TODO Нужно правильно спроектировать базу
                 var customer = Customer.builder()
                         .customerId(resultSet.getInt("customer_id"))
                         .login(resultSet.getString("login"))
@@ -95,7 +107,7 @@ public class CustomerDao implements Dao<Integer, Customer> {
         }
     }
 
-    public void setOnlineTrue(int customerId) {
+    public void setOnlineTrue(long customerId) {
         String sql = """
                 UPDATE customer
                 SET online = true
@@ -103,7 +115,7 @@ public class CustomerDao implements Dao<Integer, Customer> {
                 """;
         try (var connection = ConnectionManager.get()) {
             @Cleanup var preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, customerId);
+            preparedStatement.setLong(1, customerId);
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -111,7 +123,7 @@ public class CustomerDao implements Dao<Integer, Customer> {
         }
     }
 
-    public void setOnlineFalse(int customerId) {
+    public void setOnlineFalse(long customerId) {
         String sql = """
                 UPDATE customer
                 SET online = false
@@ -119,7 +131,7 @@ public class CustomerDao implements Dao<Integer, Customer> {
                 """;
         try (var connection = ConnectionManager.get()) {
             @Cleanup var preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, customerId);
+            preparedStatement.setLong(1, customerId);
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

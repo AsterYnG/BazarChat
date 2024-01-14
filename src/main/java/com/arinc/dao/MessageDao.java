@@ -25,12 +25,18 @@ public class MessageDao implements Dao<Integer, Message> {
     }
 
     private final String SELECT_LAST = """
-            SELECT * FROM last_messages()
-             ORDER BY message_id;
+            SELECT * FROM (
+            SELECT *
+            FROM message
+            JOIN public.customer c on c.customer_id = message.customer_id
+            JOIN public.role r on r.role_id = c.role_id
+            ORDER BY date DESC
+            LIMIT 10) AS TEMP
+            ORDER BY date
             """;
 
     private final String SAVE = """
-            INSERT INTO messages(message, customer_id, date) VALUES (?,?, now());
+            INSERT INTO message(message, customer_id, date) VALUES (?,?, now());
             """;
 
 
@@ -63,8 +69,8 @@ public class MessageDao implements Dao<Integer, Message> {
     public void save(MessageDto message) {
         try(var connection = ConnectionManager.get()) {
             @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(SAVE);
-            preparedStatement.setObject(1,message.getMessage());
-            preparedStatement.setObject(2,message.getCustomerId());
+            preparedStatement.setObject(1, message.getMessage());
+            preparedStatement.setObject(2, message.getCustomerId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

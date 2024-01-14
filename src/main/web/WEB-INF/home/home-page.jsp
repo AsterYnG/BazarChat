@@ -73,6 +73,7 @@
             <p><strong>Name:</strong> John Doe</p>
             <p><strong>Email:</strong> john@example.com</p>
             <p><strong>Location:</strong> City, Country</p>
+            <img src="${pageContext.request.contextPath}/images/${sessionScope.user.userPic}" alt="ERROR">
         </div>
         <button class="edit-profile-button">Edit Profile</button>
     </div>

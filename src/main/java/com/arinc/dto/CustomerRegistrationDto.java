@@ -1,13 +1,16 @@
 package com.arinc.dto;
 
+import jakarta.servlet.http.Part;
 import lombok.Builder;
 import lombok.Value;
 
+import java.sql.Blob;
+
 @Value
 @Builder
-public class CustomerDto {
-    Integer id;
+public class CustomerRegistrationDto {
+
     String login;
     String password;
-    String userPic;
+    Part userPic;
 }

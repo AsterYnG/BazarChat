@@ -3,6 +3,8 @@ package com.arinc.entity;
 import lombok.Builder;
 import lombok.Data;
 
+import java.sql.Blob;
+
 @Data
 @Builder
 public class Customer {
@@ -11,4 +13,5 @@ public class Customer {
     private String password;
     private Role roleId;
     private boolean online;
+    private String userPic;
 }
