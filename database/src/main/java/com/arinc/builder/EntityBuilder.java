@@ -1,4 +1,4 @@
-package com.arinc.util;
+package com.arinc.builder;
 
 import com.arinc.entity.Customer;
 import com.arinc.entity.Message;

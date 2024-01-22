@@ -1,14 +1,10 @@
 package com.arinc.dao;
 
 import com.arinc.entity.Customer;
-import com.arinc.mapper.CustomerMapper;
 import com.arinc.util.ConnectionManager;
-import com.arinc.util.EntityBuilder;
+import com.arinc.builder.EntityBuilder;
 import lombok.Cleanup;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +38,7 @@ public class CustomerDao implements Dao<Integer, Customer> {
            var resultSet = preparedStatement.executeQuery();
             resultSet.next();
 
-            return CustomerMapper
+            return Optional.of(EntityBuilder.buildCustomer(resultSet));
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -15,8 +15,9 @@ public class ChatService {
     public boolean saveMessage(MessageDto messageDto){
         Message.builder()
                 .message(messageDto.getMessage())
-                .customer(customerDao.ge)
+                .customer(customerDao.findById(messageDto.getCustomerId()).get())
                 .build();
+        return true;
     }
 
 }

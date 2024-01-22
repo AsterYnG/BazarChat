@@ -4,8 +4,6 @@ import com.arinc.dto.CustomerDto;
 import com.arinc.dto.CustomerRegistrationDto;
 import com.arinc.entity.Customer;
 
-import java.sql.Blob;
-
 
 public class CustomerMapper {
 

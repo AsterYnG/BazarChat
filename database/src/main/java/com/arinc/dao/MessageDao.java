@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.arinc.util.EntityBuilder.buildMessage;
+import static com.arinc.builder.EntityBuilder.buildMessage;
 
 public class MessageDao implements Dao<Integer, Message> {
     private static final MessageDao INSTANCE = new MessageDao();
@@ -63,8 +63,8 @@ public class MessageDao implements Dao<Integer, Message> {
     public void save(Message entity) {
         try(var connection = ConnectionManager.get()) {
             @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(SAVE);
-            preparedStatement.setObject(1, message.getMessage());
-            preparedStatement.setObject(2, message.getCustomerId());
+            preparedStatement.setObject(1, entity.getMessage());
+            preparedStatement.setObject(2, entity.getCustomer().getCustomerId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

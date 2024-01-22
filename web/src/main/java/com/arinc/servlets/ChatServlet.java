@@ -3,6 +3,7 @@ package com.arinc.servlets;
 import com.arinc.dao.MessageDao;
 import com.arinc.dto.CustomerDto;
 import com.arinc.dto.MessageDto;
+import com.arinc.service.ChatService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import jakarta.servlet.ServletException;
@@ -21,6 +22,7 @@ import com.arinc.adapter.LocaDateTimeAdapter;
 @WebServlet("/chat")
 public class ChatServlet extends HttpServlet {
     private final MessageDao messageDao = MessageDao.getInstance();
+    private final ChatService chatService = ChatService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,7 +44,7 @@ public class ChatServlet extends HttpServlet {
                 .message(message1)
                 .customerId(user.getId())
                 .build();
+        chatService.saveMessage(message);
 
-        messageDao.save(message);
     }
 }
