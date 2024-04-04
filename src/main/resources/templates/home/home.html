@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BazarChat</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div class="sidebar-button"><i class="fa-solid fa-bars fa-2xl"></i></div>
+        <div class="naming">
+            <h1>Bazar <p class="hub">Chat</p></h1>
+        </div>
+        <div class="user-controls">
+            <button id="avatar" class="action-button"><i class="fa-solid fa-user fa-2xl"></i></button>
+            <h2 id="nickname">Nickname</h2>
+            <button id="sign-in" class="action-button"><i class="fa-solid fa-right-to-bracket fa-2xl"></i></button>
+            <button id="sign-out" class="action-button"><i class="fa-solid fa-right-from-bracket fa-2xl"></i></button>
+        </div>
+    </div>
+</header>
+<div class="sidebar">
+    <ul class="menu">
+        <li><h2>Bazar</h2>
+            <h2 class="hub">Ecosystem</h2>
+        </li>
+        <li><a href="#">Bazar <p class="hub">Dialog</p></a></li>
+        <li><a href="#">Bazar <p class="hub">Market</p></a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="chat-container">
+        <div id="message-box" class="messages">
+
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <form id="messageForm" th:action="@{/api/v1/messages}" method="post" class="message-form">
+            <input type="text" id="messageInput" name="message" placeholder="Type your message...">
+            <button class="action-button" type="submit"><i class="fa-solid fa-comments-dollar fa-2xl"></i></button>
+        </form>
+    </div>
+    <div class="online-users">
+        <h2>Online Users</h2>
+        <ul class="user-list">
+            <li>Faggot</li>
+            <li>FCrter</li>
+            <li>Habibi</li>
+            <li>Jackson</li>
+
+            <!-- Online users will be displayed here -->
+        </ul>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 BazarChat. All rights reserved.</p>
+</footer>
+<script th:src="@{/js/sidebar.js}"></script>
+<script th:src="@{/js/auth-script.js}"></script>
+<script th:src="@{/js/message-script.js}"></script>
+</body>
+</html>

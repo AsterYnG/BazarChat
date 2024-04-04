@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/reg-style.css}">
+
+    <title>Register</title>
+</head>
+<body>
+<div class="container">
+    <div class="form-container">
+        <h2 class="page-title">Register</h2>
+        <form id="registration-form" th:action="@{/api/v1/users}" method="post" class="register-form" enctype="multipart/form-data">
+            <label for="login">Username:</label>
+            <input type="text" id="login" name="login" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="userPic">Pic:</label>
+            <input type="file" id="userPic" name="userPic">
+
+
+            <button type="submit" class="button-pulse">Register</button>
+        </form>
+
+        <!-- Окно успешной регистрации -->
+        <div class="success-message" id="success-message">
+            Congratulations! You have successfully registered.
+        </div>
+
+        <div class="separator"></div>
+
+        <!-- Ссылка на вход -->
+        <div class="login-link">
+            Already have an account? <a href="login.html">Login here</a>.
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/registration-script.js}"></script>
+</body>
+</html>

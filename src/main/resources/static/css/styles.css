@@ -1,0 +1,249 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(33, 33, 33);
+}
+
+
+
+
+/* All about header */
+header {
+    background-color: rgb(50, 50, 50);
+    color: #fff;
+    padding: 10px 20px;
+    height: 67px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+
+.profile-button{
+    display: flex;
+    margin-right: 10px;
+}
+.user-controls{
+    display: flex;
+    align-items: center;
+}
+.hub{
+    background-color: #ff9000;
+    color: #333;
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+
+}
+.naming h1{
+    display: flex;
+    align-items: baseline;
+
+}
+
+
+.sidebar {
+    position: fixed;
+    transform: translateX(-100%);
+    /* top: 20%; */
+    height: 100%;
+    background-color: rgba(20, 19, 17, 0.9);
+    color: #f2f2f2;
+    transition: display 0.3s ease; /* Add transition for appearing animation */
+}
+
+
+.menu {
+    list-style: none;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.menu li {
+    margin-bottom: 10px;
+    align-self: center;
+    display: flex;
+    align-items: baseline;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    padding-bottom: 5px;
+    align-items: baseline;
+    border-color: rgba(20, 19, 17, 0);
+    border-style: solid;
+    border-width: 0 0 3px 0;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+.menu a:hover{
+    border-color: #ff9000;
+}
+
+
+/* All about sidebar */
+.sidebar-button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.sidebar-button:hover {
+    color: #ff9000; /* Slightly lighter color on hover */
+}
+
+.action-button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease, color 0.3s ease;
+}
+
+.action-button:hover {
+    color: #ff9000;
+}
+
+
+/* All about containers */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Stretch items to fill the container vertically */
+    flex: 1;
+    margin-top: 20px;
+    max-height: calc(100vh - 145px);
+}
+.chat-container,
+.online-users {
+    background-color: rgb(50, 50, 50);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    color: #ffffff;
+}
+
+.chat-container {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+
+}
+.online-users {
+    width: 20%;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* All about messages */
+.messages {
+    max-height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    background-color: rgb(68, 68, 68);
+    max-width: 70%;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.message-author {
+    display: flex;
+    font-weight: bold;
+    align-self: flex-start;
+}
+
+.message-date {
+    color: #666;
+    display: flex;
+    font-size: 12px;
+    align-self: flex-end;
+    margin-left: 10px;
+}
+
+.message-content {
+    text-align: left;
+    overflow-wrap: break-word;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.message.self {
+    background-color: #ff9000;
+    align-self: flex-end;
+    color: #333;
+}
+
+.message-form {
+    margin-top: 20px;
+    display: flex;
+}
+
+.message-form input {
+    flex: 1; /* Input fills remaining space */
+    padding: 10px;
+    border: 1px solid #ccc;
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: rgb(68, 68, 68);
+}
+
+
+
+/* All about online users */
+
+.user-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-list li {
+    margin-bottom: 10px;
+}
+
+.online-users h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* All anout footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    height: 38px;
+}
