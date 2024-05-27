@@ -5,49 +5,53 @@ async function getLastMessages() {
         messages = await promise.json();
         let box = document.getElementById("message-box");
         for (let i = 0; i < messages.length; i++) {
-            printMessage(box,messages[i]);
+            printMessage(box, messages[i]);
         }
     } else window.alert("GG");
 
-}function printNewAuthor(pContent,message,lastMessage){
+}
+
+function printNewAuthor(pContent, message, lastMessage,messageBox) {
     let pAuthor = document.createElement("p");
-    pAuthor.className = 'message-author';
-    if(lastMessage === null){
+    pAuthor.className = 'message-author self';
+    if (lastMessage === null) {
         pAuthor.textContent = message.login;
-        pContent.before(pAuthor);
+        messageBox.before(pAuthor);
         return;
     }
-    if (message.login !== lastMessage.getElementsByClassName('message-author').textContent){
+    if (lastMessage.login !== message.login) {
         pAuthor.textContent = message.login;
-        pContent.before(pAuthor);
+        messageBox.before(pAuthor);
     }
 }
-function printMessage(box,message){
+
+function printMessage(box, message) {
     let divMessage = document.createElement('div');
     let pContent = document.createElement('p');
     let pDate = document.createElement('p');
-    let userLogin= sessionStorage.getItem("currentUserLogin")
+    let userLogin = sessionStorage.getItem("userLogin")
 
 
     pContent.className = 'message-content';
     pDate.className = 'message-date';
-    if (message.login === userLogin){
+    if (message.login === userLogin) {
         divMessage.className = 'message self';
-    }
-    else divMessage.className = 'message';
+    } else divMessage.className = 'message';
 
-    if (!messageExists(message.messageId)){ // Print only new incoming messages
+    if (!messageExists(message.messageId)) { // Print only new incoming messages
         let lastMessage = box.lastElementChild;
 
         divMessage.messageId = message.messageId;
+        divMessage.login = message.login;
         pContent.textContent = message.message;
 
         let date = new Date(message.date);
 
-        pDate.textContent = date.toTimeString();
+
+        pDate.textContent = date.toLocaleTimeString('ru-RU');
         box.appendChild(divMessage);
-        divMessage.append(pContent,pDate)
-        printNewAuthor(pContent,message,lastMessage);
+        divMessage.append(pContent, pDate)
+        printNewAuthor(pContent, message, lastMessage,divMessage);
         box.scrollTop = box.scrollHeight;
     }
 }
@@ -57,17 +61,18 @@ function messageExists(messageId) {
     let box = document.getElementById("message-box");
     let childNodes = box.childNodes;
     for (let node of childNodes) {
-        if (node.messageId === messageId){
+        if (node.messageId === messageId) {
             return true;
         }
     }
     return false;
 }
+
 const messageForm = document.getElementById('messageForm');
-if (messageForm){
-    messageForm.addEventListener('submit',sendMessage);
-}
-else window.alert("pizdec");
+if (messageForm) {
+    messageForm.addEventListener('submit', sendMessage);
+} else window.alert("pizdec");
+
 async function sendData(data) {
     return await fetch('/api/v1/messages', {
         method: 'POST',
@@ -76,16 +81,15 @@ async function sendData(data) {
 }
 
 
-
-async function sendMessage(event){
-    let userId= sessionStorage.getItem("currentUserId")
+async function sendMessage(event) {
+    let userId = sessionStorage.getItem("userId")
 
     event.preventDefault();
     let data = new FormData(event.target);
-    console.log(sessionStorage.getItem("currentUserId"));
-    data.append('userId',userId)
+    console.log(sessionStorage.getItem("userId"));
+    data.append('userId', userId)
     let response = await sendData(data);
-    if (!response.ok){
+    if (!response.ok) {
         window.alert("Form pushing error");
     }
 
@@ -94,5 +98,4 @@ async function sendMessage(event){
 }
 
 
-/*
-setInterval(getLastMessages, 500);*/
+setInterval(getLastMessages, 500);

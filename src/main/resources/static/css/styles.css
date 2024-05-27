@@ -29,6 +29,22 @@ header {
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
+    height: 100%;
+}
+.user-pic{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    clip-path: circle();
+}
+.user-pic-container{
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    height: 100%;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 
@@ -39,6 +55,7 @@ header {
 .user-controls{
     display: flex;
     align-items: center;
+    height: 100%;
 }
 .hub{
     background-color: #ff9000;
@@ -150,6 +167,28 @@ header {
     flex-direction: column;
 
 }
+.messages-container{
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.messages::-webkit-scrollbar {
+    width: 10px;
+}
+
+.messages::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color:  rgb(50, 50, 50);
+}
+
+.messages::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: rgb(33, 33, 33);
+}
+
+
 .online-users {
     width: 20%;
     margin-left: 20px;
@@ -160,11 +199,11 @@ header {
 /* All about messages */
 .messages {
     max-height: 100%;
-    overflow-y: scroll;
     overflow-x: hidden;
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding-right: 10px;
 }
 
 .message {
@@ -175,6 +214,7 @@ header {
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
 }
 
 
@@ -182,6 +222,11 @@ header {
     display: flex;
     font-weight: bold;
     align-self: flex-start;
+}
+.message-author.self {
+    display: flex;
+    font-weight: bold;
+    align-self: flex-end;
 }
 
 .message-date {

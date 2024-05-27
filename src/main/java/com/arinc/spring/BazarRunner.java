@@ -16,4 +16,5 @@ public class BazarRunner {
          var context = SpringApplication.run(BazarRunner.class,args);
         System.out.println("hi");
     }
+
 }

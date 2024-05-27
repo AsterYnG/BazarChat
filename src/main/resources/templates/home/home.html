@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +15,11 @@
             <h1>Bazar <p class="hub">Chat</p></h1>
         </div>
         <div class="user-controls">
-            <button id="avatar" class="action-button"><i class="fa-solid fa-user fa-2xl"></i></button>
-            <h2 id="nickname">Nickname</h2>
-            <button id="sign-in" class="action-button"><i class="fa-solid fa-right-to-bracket fa-2xl"></i></button>
-            <button id="sign-out" class="action-button"><i class="fa-solid fa-right-from-bracket fa-2xl"></i></button>
+            <a sec:authorize="isAuthenticated()" id="user-pic-container"  class="user-pic-container"></a>
+            <a sec:authorize="isAnonymous()"  id="sign-in" class="action-button"  th:href="@{/login}"><i class="fa-solid fa-right-to-bracket fa-2xl"></i> </a>
+            <form th:action="@{/logout}" th:method="post">
+            <button sec:authorize="isAuthenticated()" id="sign-out" class="action-button" ><i class="fa-solid fa-right-from-bracket fa-2xl"></i></button>
+            </form>
         </div>
     </div>
 </header>
@@ -34,6 +35,7 @@
 
 <div class="container">
     <div class="chat-container">
+        <div class="messages-container">
         <div id="message-box" class="messages">
 
             <!-- Chat messages will be displayed here -->
@@ -42,15 +44,11 @@
             <input type="text" id="messageInput" name="message" placeholder="Type your message...">
             <button class="action-button" type="submit"><i class="fa-solid fa-comments-dollar fa-2xl"></i></button>
         </form>
+        </div>
     </div>
-    <div class="online-users">
+    <div  class="online-users">
         <h2>Online Users</h2>
-        <ul class="user-list">
-            <li>Faggot</li>
-            <li>FCrter</li>
-            <li>Habibi</li>
-            <li>Jackson</li>
-
+        <ul id="user-list" class="user-list">
             <!-- Online users will be displayed here -->
         </ul>
     </div>
@@ -60,7 +58,8 @@
     <p>&copy; 2024 BazarChat. All rights reserved.</p>
 </footer>
 <script th:src="@{/js/sidebar.js}"></script>
-<script th:src="@{/js/auth-script.js}"></script>
+<script th:src="@{/js/user.js}"></script>
 <script th:src="@{/js/message-script.js}"></script>
+<script th:src="@{/js/online.js}"></script>
 </body>
 </html>

@@ -78,11 +78,9 @@ public class UserService implements UserDetailsService {
                 .map(userRepository::save)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
-    public void setOnlineTrue(UserDto userDto) {
-        userRepository.updateCustomerById(userDto.getId(),true);
-    }
-    public void setOnlineFalse(UserDto userDto) {
-        userRepository.updateCustomerById(userDto.getId(),false);
+
+    public void setOnline(String userName, boolean isOnline){
+        userRepository.updateCustomerByLogin(userName,isOnline);
     }
 
     @Transactional
@@ -96,5 +94,6 @@ public class UserService implements UserDetailsService {
                         .build())
                 .orElseThrow(() -> new UsernameNotFoundException("Can't find user: "+ username));
     }
+
 }
 

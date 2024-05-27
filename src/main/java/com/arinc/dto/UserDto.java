@@ -11,4 +11,5 @@ public class UserDto {
     String password;
     String userPic;
     String role;
+    boolean online;
 }

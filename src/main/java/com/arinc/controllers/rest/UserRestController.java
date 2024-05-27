@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,13 +24,13 @@ import java.util.Optional;
 public class UserRestController {
     private final UserService userService;
 
+    @PreAuthorize("permitAll()")
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     void createCustomer(@Validated UserRegistrationDto userRegistrationDto){
         userService.saveUser(userRegistrationDto);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("permitAll()")
     @GetMapping("/current")
     public UserDto getAuthenticatedUser(@AuthenticationPrincipal UserDetails userDetails){
         if (userDetails != null){
@@ -40,4 +41,12 @@ public class UserRestController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
+
+
+    @PreAuthorize("permitAll()")
+    @GetMapping("/online")
+    public List<UserDto> getOnlineUsers(){
+        return userService.getOnlineUsers();
+    }
+
 }

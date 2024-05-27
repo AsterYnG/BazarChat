@@ -1,10 +1,13 @@
 spring:
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:C:/MySpace/LocalStorage/BazarChat/images
   datasource:
     username: postgres
     password: GrinBogdatebase1111
     url: jdbc:postgresql://localhost:2200/bazarchat
   jpa:
-    show-sql: true
+    show-sql: false
   security:
     oauth2:
       client:
@@ -35,5 +38,6 @@ logging:
   level:
     org:
       springframework:
-        security: TRACE
-
+        security: INFO
+image:
+  path: C:/MySpace/LocalStorage/BazarChat/images

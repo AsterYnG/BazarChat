@@ -1,6 +1,8 @@
 package com.arinc.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
@@ -9,13 +11,13 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.Optional;
 
 @PreAuthorize("permitAll()")
 @Service
 @RequiredArgsConstructor
 public class ImageService {
-    private final String BASE_PATH = "images/";
+    @Value("${image.path}")
+    private String BASE_PATH;
 
 
     public void upload(String imagePath, InputStream content) {
@@ -32,11 +34,11 @@ public class ImageService {
         }
     }
 
-    public Optional<InputStream> get(String imagePath) throws IOException {
+    @SneakyThrows
+    public byte[] get(String imagePath) {
         var fullPath = Path.of(BASE_PATH, imagePath);
-
         return Files.exists(fullPath)
-                ? Optional.of(Files.newInputStream(fullPath))
-                : Optional.empty();
+                ? Files.readAllBytes(fullPath)
+                : null;
     }
 }

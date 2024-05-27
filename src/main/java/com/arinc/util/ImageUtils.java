@@ -1,5 +1,7 @@
 package com.arinc.util;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -13,14 +15,13 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.security.GeneralSecurityException;
 import java.security.cert.X509Certificate;
-import java.util.Arrays;
-import java.util.Comparator;
 
 @Component
 public class ImageUtils {
-    private final String BASE_PATH = "images/";
+    @Value("${image.path}")
+    private String BASE_PATH;
 
-    public String loadImage(String picUrl)
+    public String loadImageByUrl(String picUrl)
     {
         try {
             TrustManager[] trustAllCerts = new TrustManager[] {
@@ -46,7 +47,7 @@ public class ImageUtils {
                 throw new RuntimeException(e);
             }
 
-            String fileName = parseFileName(picUrl);
+            String fileName = Math.round(Math.random() * 10000) + ".png";
             var fullPath = Path.of( BASE_PATH , fileName);
 
 
@@ -54,7 +55,7 @@ public class ImageUtils {
             openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
             try (var stream = openConnection.getInputStream()){
                 Files.write(fullPath, stream.readAllBytes(), StandardOpenOption.CREATE,StandardOpenOption.TRUNCATE_EXISTING);
-                return fullPath.toString();
+                return fileName;
             }
             catch (Exception e){
                 throw new RuntimeException(e);
@@ -65,9 +66,5 @@ public class ImageUtils {
         }
     }
 
-    private String parseFileName(String picUrl) {
-        String[] split = picUrl.split("/");
-        //TODO: Реализовать поиск названия
-        return split[split.length -1] + ".png";
-    }
+
 }
