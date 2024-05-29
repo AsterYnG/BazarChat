@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+    <link rel="stylesheet" th:href="@{/css/popup.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -20,7 +21,7 @@
                 <!-- Chat messages will be displayed here -->
             </div>
             <form id="messageForm" th:action="@{/api/v1/messages}" method="post" class="message-form">
-                <input type="text" id="messageInput" name="message" placeholder="Type your message..." pattern=".*[^ ].*">
+                <input type="text" id="messageInput" name="message" placeholder="Type your message...">
                 <button class="action-button" type="submit"><i class="fa-solid fa-comments-dollar fa-2xl"></i></button>
             </form>
         </div>
