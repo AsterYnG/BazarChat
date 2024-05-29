@@ -11,6 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: rgb(33, 33, 33);
+    color: white;
 }
 
 
@@ -32,14 +33,28 @@ body {
 
 .profile-info {
     text-align: center;
+    display: flex;
 }
 
-#profile-picture {
+.username {
+    display: block;
+    align-self: center;
+}
+.username-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+.profile-picture {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 1rem;
+    align-self: flex-start;
+    opacity: 0;
 }
 
 .profile-details ul,
