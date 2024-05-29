@@ -7,7 +7,9 @@
             <h1>Bazar <p class="hub">Chat</p></h1>
         </div>
         <div class="user-controls">
-            <a sec:authorize="isAuthenticated()" id="user-pic-container"  class="user-pic-container" th:href="@{/profile}"></a>
+            <a sec:authorize="isAuthenticated()" id="user-pic-container"  class="user-pic-container" th:href="@{/profile}">
+                <img src="https://st.depositphotos.com/3265665/4462/i/450/depositphotos_44627471-stock-photo-transparent.jpg" class="user-pic" alt="User picture">
+            </a>
             <a sec:authorize="isAnonymous()"  id="sign-in" class="action-button"  th:href="@{/login}"><i class="fa-solid fa-right-to-bracket fa-2xl"></i> </a>
             <form th:action="@{/logout}" th:method="post">
                 <button sec:authorize="isAuthenticated()" id="sign-out" class="action-button" ><i class="fa-solid fa-right-from-bracket fa-2xl"></i></button>

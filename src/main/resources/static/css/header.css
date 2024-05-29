@@ -17,6 +17,7 @@ header {
     width: 100%;
     object-fit: cover;
     clip-path: circle();
+    opacity: 0;
 }
 .user-pic-container{
     background-color: transparent;

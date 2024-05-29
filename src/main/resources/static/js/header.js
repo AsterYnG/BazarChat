@@ -6,17 +6,14 @@ function loadUser(userId,userLogin) {
 }
 
 function loadUserImage(currentUser) {
-    let userPicContainer = document.getElementById("user-pic-container");
-    let userPic = document.createElement("img");
-    userPic.className = "user-pic"
-
+    let userPic = document.querySelector(".user-pic");
 
     if (currentUser.userPic === null) {
         userPic.src = 'images/default.png'
     } else {
         userPic.src =currentUser.userPic;
     }
-    userPicContainer.append(userPic);
+    userPic.style.opacity = "1";
 }
 
 async function getCurrentUser(){

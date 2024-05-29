@@ -22,6 +22,7 @@ public class UserMapper {
                 .login(user.getLogin())
                 .password(user.getPassword())
                 .userPic(user.getUserPic())
+                .role(user.getRole().getRoleName())
                 .build();
     }
 

@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 @Service
 @PreAuthorize("permitAll()")
 @RequiredArgsConstructor
+@Transactional
 public class UserService implements UserDetailsService {
 
 

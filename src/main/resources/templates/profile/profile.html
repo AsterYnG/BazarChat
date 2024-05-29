@@ -16,21 +16,24 @@
     <div class="profile-container">
         <!-- Основная информация о профиле -->
         <div class="profile-block profile-info">
-            <img id="profile-picture" src="default-profile.png" alt="Profile Picture">
-            <h2 id="username">Username</h2>
-            <p id="bio">This is the bio.</p>
+            <div class="img-container">
+<!--                Image here-->
+                <img src="https://st.depositphotos.com/3265665/4462/i/450/depositphotos_44627471-stock-photo-transparent.jpg" alt="Profile picture" class="profile-picture">
+            </div>
+            <div class="username-container">
+<!--                Username here-->
+            </div>
         </div>
         <!-- Детали профиля -->
         <div class="profile-block profile-details">
-            <h3>Details</h3>
+            <h3>Инфа</h3>
             <ul>
-                <li><strong>Email:</strong> <span id="email">user@example.com</span></li>
-                <li><strong>Joined:</strong> <span id="joined-date">January 1, 2020</span></li>
+                <li><strong>Роль:</strong> <span id="role"></span></li>
             </ul>
         </div>
         <!-- Друзья -->
         <div class="profile-block profile-friends">
-            <h3>Friends</h3>
+            <h3>Други</h3>
             <ul id="friends-list">
                 <li>Friend 1</li>
                 <li>Friend 2</li>
@@ -39,7 +42,7 @@
         </div>
         <!-- История активности -->
         <div class="profile-block profile-activity">
-            <h3>Recent Activity</h3>
+            <h3>Последняя активность (Инвентарь)</h3>
             <ul id="activity-list">
                 <li>Posted a new article</li>
                 <li>Commented on a photo</li>
@@ -48,7 +51,8 @@
         </div>
     </div>
 </main>
-<script th:src="@{/js/user.js}"></script>
+<script th:src="@{/js/header.js}"></script>
 <script th:src="@{/js/sidebar.js}"></script>
+<script th:src="@{/js/profile-script.js}"></script>
 </body>
 </html>
