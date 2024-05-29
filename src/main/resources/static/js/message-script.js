@@ -103,4 +103,4 @@ async function sendMessage(event) {
 }
 
 
-// setInterval(getLastMessages, 500);
+setInterval(getLastMessages, 500);

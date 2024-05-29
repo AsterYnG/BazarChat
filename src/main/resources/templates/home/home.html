@@ -20,7 +20,7 @@
                 <!-- Chat messages will be displayed here -->
             </div>
             <form id="messageForm" th:action="@{/api/v1/messages}" method="post" class="message-form">
-                <input type="text" id="messageInput" name="message" placeholder="Type your message...">
+                <input type="text" id="messageInput" name="message" placeholder="Type your message..." pattern=".*[^ ].*">
                 <button class="action-button" type="submit"><i class="fa-solid fa-comments-dollar fa-2xl"></i></button>
             </form>
         </div>
