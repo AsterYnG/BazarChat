@@ -5,48 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BazarChat</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-<header>
-    <div class="header-content">
-        <div class="sidebar-button"><i class="fa-solid fa-bars fa-2xl"></i></div>
-        <div class="naming">
-            <h1>Bazar <p class="hub">Chat</p></h1>
-        </div>
-        <div class="user-controls">
-            <a sec:authorize="isAuthenticated()" id="user-pic-container"  class="user-pic-container"></a>
-            <a sec:authorize="isAnonymous()"  id="sign-in" class="action-button"  th:href="@{/login}"><i class="fa-solid fa-right-to-bracket fa-2xl"></i> </a>
-            <form th:action="@{/logout}" th:method="post">
-            <button sec:authorize="isAuthenticated()" id="sign-out" class="action-button" ><i class="fa-solid fa-right-from-bracket fa-2xl"></i></button>
-            </form>
-        </div>
-    </div>
-</header>
-<div class="sidebar">
-    <ul class="menu">
-        <li><h2>Bazar</h2>
-            <h2 class="hub">Ecosystem</h2>
-        </li>
-        <li><a href="#">Bazar <p class="hub">Dialog</p></a></li>
-        <li><a href="#">Bazar <p class="hub">Market</p></a></li>
-    </ul>
-</div>
-
+<header th:insert="~{fragments/header:: header}"></header>
+<div th:insert="~{fragments/sidebar:: sidebar}"></div>
 <div class="container">
     <div class="chat-container">
         <div class="messages-container">
-        <div id="message-box" class="messages">
+            <div id="message-box" class="messages">
 
-            <!-- Chat messages will be displayed here -->
-        </div>
-        <form id="messageForm" th:action="@{/api/v1/messages}" method="post" class="message-form">
-            <input type="text" id="messageInput" name="message" placeholder="Type your message...">
-            <button class="action-button" type="submit"><i class="fa-solid fa-comments-dollar fa-2xl"></i></button>
-        </form>
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <form id="messageForm" th:action="@{/api/v1/messages}" method="post" class="message-form">
+                <input type="text" id="messageInput" name="message" placeholder="Type your message...">
+                <button class="action-button" type="submit"><i class="fa-solid fa-comments-dollar fa-2xl"></i></button>
+            </form>
         </div>
     </div>
-    <div  class="online-users">
+    <div class="online-users">
         <h2>Online Users</h2>
         <ul id="user-list" class="user-list">
             <!-- Online users will be displayed here -->
@@ -57,9 +36,9 @@
 <footer>
     <p>&copy; 2024 BazarChat. All rights reserved.</p>
 </footer>
-<script th:src="@{/js/sidebar.js}"></script>
 <script th:src="@{/js/user.js}"></script>
 <script th:src="@{/js/message-script.js}"></script>
 <script th:src="@{/js/online.js}"></script>
+<script th:src="@{/js/sidebar.js}"></script>
 </body>
 </html>

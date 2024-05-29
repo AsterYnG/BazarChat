@@ -30,6 +30,7 @@ public class SecurityConfiguration  {
                                         "/login",
                                         "/registration",
                                         "/home",
+                                        "/profile",
                                         "/css/**",
                                         "/js/**",
                                         "api/**",

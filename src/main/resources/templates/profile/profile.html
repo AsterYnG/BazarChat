@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" th:href="@{css/profile.css}">
+    <link rel="stylesheet" th:href="@{css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<header th:insert="~{fragments/header :: header}"></header>
+<div th:insert="~{fragments/sidebar:: sidebar}"></div>
+<main>
+    <div class="profile-container">
+        <!-- Основная информация о профиле -->
+        <div class="profile-block profile-info">
+            <img id="profile-picture" src="default-profile.png" alt="Profile Picture">
+            <h2 id="username">Username</h2>
+            <p id="bio">This is the bio.</p>
+        </div>
+        <!-- Детали профиля -->
+        <div class="profile-block profile-details">
+            <h3>Details</h3>
+            <ul>
+                <li><strong>Email:</strong> <span id="email">user@example.com</span></li>
+                <li><strong>Joined:</strong> <span id="joined-date">January 1, 2020</span></li>
+            </ul>
+        </div>
+        <!-- Друзья -->
+        <div class="profile-block profile-friends">
+            <h3>Friends</h3>
+            <ul id="friends-list">
+                <li>Friend 1</li>
+                <li>Friend 2</li>
+                <li>Friend 3</li>
+            </ul>
+        </div>
+        <!-- История активности -->
+        <div class="profile-block profile-activity">
+            <h3>Recent Activity</h3>
+            <ul id="activity-list">
+                <li>Posted a new article</li>
+                <li>Commented on a photo</li>
+                <li>Joined a new group</li>
+            </ul>
+        </div>
+    </div>
+</main>
+<script th:src="@{/js/user.js}"></script>
+<script th:src="@{/js/sidebar.js}"></script>
+</body>
+</html>

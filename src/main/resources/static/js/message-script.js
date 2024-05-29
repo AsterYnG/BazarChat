@@ -11,14 +11,19 @@ async function getLastMessages() {
 
 }
 
-function printNewAuthor(pContent, message, lastMessage,messageBox) {
+function printNewAuthor(pContent, message, lastMessage, messageBox) {
     let pAuthor = document.createElement("p");
-    pAuthor.className = 'message-author self';
+
+    let userLogin = sessionStorage.getItem("userLogin")
+    if (message.login === userLogin) pAuthor.className = 'message-author self';
+    else pAuthor.className = 'message-author';
+
     if (lastMessage === null) {
         pAuthor.textContent = message.login;
         messageBox.before(pAuthor);
         return;
     }
+
     if (lastMessage.login !== message.login) {
         pAuthor.textContent = message.login;
         messageBox.before(pAuthor);
@@ -51,7 +56,7 @@ function printMessage(box, message) {
         pDate.textContent = date.toLocaleTimeString('ru-RU');
         box.appendChild(divMessage);
         divMessage.append(pContent, pDate)
-        printNewAuthor(pContent, message, lastMessage,divMessage);
+        printNewAuthor(pContent, message, lastMessage, divMessage);
         box.scrollTop = box.scrollHeight;
     }
 }

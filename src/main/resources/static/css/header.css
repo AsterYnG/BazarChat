@@ -1,0 +1,110 @@
+header {
+    background-color: rgb(50, 50, 50);
+    color: #fff;
+    padding: 10px 20px;
+    height: 67px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    height: 100%;
+}
+.user-pic{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    clip-path: circle();
+}
+.user-pic-container{
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    height: 100%;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+.profile-button{
+    display: flex;
+    margin-right: 10px;
+}
+.user-controls{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.hub{
+    background-color: #ff9000;
+    color: #333;
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+
+}
+.naming h1{
+    display: flex;
+    align-items: baseline;
+
+}
+
+
+.sidebar {
+    position: fixed;
+    transform: translateX(-100%);
+    /* top: 20%; */
+    height: 100%;
+    background-color: rgba(20, 19, 17, 0.9);
+    color: #f2f2f2;
+    transition: display 0.3s ease; /* Add transition for appearing animation */
+}
+
+
+.menu {
+    list-style: none;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.menu li {
+    margin-bottom: 10px;
+    align-self: center;
+    display: flex;
+    align-items: baseline;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    padding-bottom: 5px;
+    align-items: baseline;
+    border-color: rgba(20, 19, 17, 0);
+    border-style: solid;
+    border-width: 0 0 3px 0;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+.menu a:hover{
+    border-color: #ff9000;
+}
+
+.action-button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease, color 0.3s ease;
+}
+
+.action-button:hover {
+    color: #ff9000;
+}

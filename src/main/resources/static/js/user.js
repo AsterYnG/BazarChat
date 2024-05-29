@@ -29,5 +29,9 @@ async function getCurrentUser(){
         loadUser(currentUser.id,currentUser.login);
         loadUserImage(currentUser);
     }
+    else {
+        loadUser(null,null);
+        loadUserImage(null);
+    }
 }
 
