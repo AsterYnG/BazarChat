@@ -1,3 +1,5 @@
+
+
 async function getLastMessages() {
     let messages;
     let promise = await fetch("/api/v1/messages");
@@ -93,14 +95,22 @@ async function sendMessage(event) {
     let data = new FormData(event.target);
     console.log(sessionStorage.getItem("userId"));
     data.append('userId', userId)
-    let response = await sendData(data);
-    if (!response.ok) {
-        window.alert("Form pushing error");
+
+    const inputField = document.getElementById('messageInput');
+
+    // Проверка корректности данных (н
+    // апример, не пустая строка)
+    if (inputField.value.trim() === '') {
+        // Показываем всплывающее окно
+
+    } else {
+        let response = await sendData(data);
+        if (!response.ok) {
+            window.alert("Form pushing error");
+        }
+
+        let box = document.getElementById('messageInput');
+        box.value = '';
     }
-
-    let box = document.getElementById('messageInput');
-    box.value = '';
 }
-
-
 setInterval(getLastMessages, 500);
