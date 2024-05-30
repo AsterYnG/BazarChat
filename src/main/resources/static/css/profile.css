@@ -14,19 +14,77 @@ body {
     color: white;
 }
 
-a{
+.content{
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+    max-height: calc(100vh - 145px);
+    margin-top: 20px;
+}
+
+a {
     text-decoration: none;
     color: inherit;
 }
 
+.under-pic-btn{
+    display: block;
+    background-color: rgb(33, 33, 33);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.under-pic-btn:hover{
+    background-color: #333;
+}
 
 .profile-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 2rem auto;
-    background: #2a2a2a;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-sidebar {
+    max-width: 250px;
+    text-align: center;
+}
+
+.profile-sidebar .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.profile-sidebar .username {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.profile-sidebar .profile-links {
+    list-style-type: none;
+    padding: 0;
+}
+
+.profile-sidebar .profile-links li {
+    margin-bottom: 1rem;
+}
+
+
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .profile-block {
@@ -34,32 +92,7 @@ a{
     padding: 1rem;
     background-color: #333;
     border-radius: 5px;
-}
-
-.profile-info {
-    text-align: center;
-    display: flex;
-}
-
-.username {
-    display: block;
-    align-self: center;
-}
-.username-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-}
-
-.profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1rem;
-    align-self: flex-start;
-    opacity: 0;
+    animation: fadeIn 2s ease-in-out;
 }
 
 .profile-details ul,
@@ -81,4 +114,26 @@ a{
     display: inline-block;
     width: 100px;
     color: #ff9800;
+}
+
+.diagonal-text {
+    position: absolute;
+    top: 20px;
+    right: -40px;
+    font-size: 4rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.1);
+    transform: rotate(-45deg);
+    pointer-events: none;
+    user-select: none;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

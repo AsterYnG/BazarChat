@@ -7,50 +7,59 @@
     <link rel="stylesheet" th:href="@{css/profile.css}">
     <link rel="stylesheet" th:href="@{css/header.css}">
     <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 <header th:insert="~{fragments/header :: header}"></header>
 <div th:insert="~{fragments/sidebar:: sidebar}"></div>
-<main>
+<div class="content">
     <div class="profile-container">
-        <!-- Основная информация о профиле -->
-        <div class="profile-block profile-info">
-            <div class="img-container">
-<!--                Image here-->
-                <img src="https://st.depositphotos.com/3265665/4462/i/450/depositphotos_44627471-stock-photo-transparent.jpg" alt="Profile picture" class="profile-picture">
+        <!-- Sidebar with profile picture and links -->
+        <div class="profile-sidebar">
+            <img src="https://st.depositphotos.com/3265665/4462/i/450/depositphotos_44627471-stock-photo-transparent.jpg"
+                 alt="Profile picture" class="profile-picture">
+            <div class="username">grinbog015@gmail.com</div>
+            <ul class="profile-links">
+                <li><a class="under-pic-btn" href="#">Редактировать профиль</a></li>
+                <li><a class="under-pic-btn" href="#">Инвентарь</a></li>
+            </ul>
+        </div>
+
+        <!-- Main profile content -->
+        <div class="profile-content">
+            <!-- Basic info -->
+            <div class="profile-block profile-info">
+                <h3>Инфа</h3>
+                <ul>
+                    <li><strong>Роль:</strong> <span id="role">user</span></li>
+                </ul>
             </div>
-            <div class="username-container">
-<!--                Username here-->
+            <!-- Friends list -->
+            <div class="profile-block profile-friends">
+                <h3>Други</h3>
+                <ul id="friends-list">
+                    <li>Friend 1</li>
+                    <li>Friend 2</li>
+                    <li>Friend 3</li>
+                </ul>
             </div>
-        </div>
-        <!-- Детали профиля -->
-        <div class="profile-block profile-details">
-            <h3>Инфа</h3>
-            <ul>
-                <li><strong>Роль:</strong> <span id="role"></span></li>
-            </ul>
-        </div>
-        <!-- Друзья -->
-        <div class="profile-block profile-friends">
-            <h3>Други</h3>
-            <ul id="friends-list">
-                <li>Friend 1</li>
-                <li>Friend 2</li>
-                <li>Friend 3</li>
-            </ul>
-        </div>
-        <!-- История активности -->
-        <div class="profile-block profile-activity">
-            <h3>Последняя активность (Инвентарь)</h3>
-            <ul id="activity-list">
-                <li>Posted a new article</li>
-                <li>Commented on a photo</li>
-                <li>Joined a new group</li>
-            </ul>
+            <!-- Recent activity -->
+            <div class="profile-block profile-activity">
+                <h3>Последняя активность (Инвентарь)</h3>
+                <ul id="activity-list">
+                    <li>Posted a new article</li>
+                    <li>Commented on a photo</li>
+                    <li>Joined a new group</li>
+                </ul>
+            </div>
         </div>
     </div>
-</main>
+
+    <!-- Diagonal User text -->
+    <!--    <div class="diagonal-text">USER</div>-->
+</div>
+<footer th:replace="~{fragments/footer:: footer}"></footer>
 <script th:src="@{/js/header.js}"></script>
 <script th:src="@{/js/sidebar.js}"></script>
 <script th:src="@{/js/profile-script.js}"></script>
