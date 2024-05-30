@@ -20,4 +20,7 @@ public class User implements BaseEntity<Integer> {
     private Role role;
     private boolean online;
     private String userPic;
+    private String email;
+    private String name;
+    private String surname;
 }

@@ -11,5 +11,8 @@ public class UserDto {
     String password;
     String userPic;
     String role;
+    String name;
+    String email;
+    String surname;
     boolean online;
 }

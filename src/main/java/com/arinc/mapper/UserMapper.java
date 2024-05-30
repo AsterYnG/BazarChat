@@ -48,7 +48,7 @@ public class UserMapper {
                 .login(userRegistrationDto.getLogin())
                 .userPic(userRegistrationDto.getUserPic())
                 .password(passwordEncoder.encode(userRegistrationDto.getPassword()))
-                .role(roleService.findByRoleName("user").orElse(null))
+                .role(roleService.findByRoleName("USER").orElse(null))
                 .build();
     }
 }

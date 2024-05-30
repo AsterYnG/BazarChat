@@ -20,7 +20,7 @@ public class Role implements BaseEntity<Integer>, GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String roleName;
-
+    private String roleNameRu;
     @Override
     public String getAuthority() {
         return roleName;
