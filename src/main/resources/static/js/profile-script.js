@@ -21,24 +21,19 @@ function printProfileData(profile){
 }
 
 function printImage(profile){
-    const imgContainer = document.querySelector(".img-container");
     let image = document.querySelector(".profile-picture");
     image.src = profile.userPic;
     image.style.opacity = "1";
 }
 
 function printUsername(profile){
-    const usernameContainer = document.querySelector(".username-container");
-
-    let username = document.createElement("h2");
-    username.className = "username";
+    let username = document.querySelector(".username");
     username.textContent = profile.login;
-
-    usernameContainer.append(username);
+    username.style.display = "block";
 }
 
 function printRole(profile){
-    const role = document.querySelector("#role");
+    const role = document.querySelector(".diagonal-text");
 
     role.textContent = profile.role;
 

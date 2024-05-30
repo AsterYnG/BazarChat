@@ -17,9 +17,10 @@
     <div class="profile-container">
         <!-- Sidebar with profile picture and links -->
         <div class="profile-sidebar">
-            <img src="https://st.depositphotos.com/3265665/4462/i/450/depositphotos_44627471-stock-photo-transparent.jpg"
+            <div class="diagonal-text">USER</div>
+            <img id="image" src="https://st.depositphotos.com/3265665/4462/i/450/depositphotos_44627471-stock-photo-transparent.jpg"
                  alt="Profile picture" class="profile-picture">
-            <div class="username">grinbog015@gmail.com</div>
+            <div class="username">grinsdfssdfh</div>
             <ul class="profile-links">
                 <li><a class="under-pic-btn" href="#">Редактировать профиль</a></li>
                 <li><a class="under-pic-btn" href="#">Инвентарь</a></li>
@@ -30,9 +31,8 @@
         <div class="profile-content">
             <!-- Basic info -->
             <div class="profile-block profile-info">
-                <h3>Инфа</h3>
                 <ul>
-                    <li><strong>Роль:</strong> <span id="role">user</span></li>
+                    <li><strong>Роль:</strong> <span id="role"></span></li>
                 </ul>
             </div>
             <!-- Friends list -->
@@ -57,7 +57,7 @@
     </div>
 
     <!-- Diagonal User text -->
-    <!--    <div class="diagonal-text">USER</div>-->
+
 </div>
 <footer th:replace="~{fragments/footer:: footer}"></footer>
 <script th:src="@{/js/header.js}"></script>
