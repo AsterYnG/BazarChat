@@ -52,6 +52,7 @@ public class OidcService implements OAuth2UserService<OidcUserRequest, OidcUser>
                 .userPic(picPath)
                 .login(idToken.getEmail())
                 .password(String.valueOf(Math.random()))
+                .roleId(1)
                 .build();
         userService.saveUser(oAuthUser);
     }
