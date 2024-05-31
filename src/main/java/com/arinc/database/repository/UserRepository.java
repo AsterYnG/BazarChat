@@ -21,6 +21,8 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 
     Optional<User> findByLogin(String login);
 
+    Optional<User> findByEmail(String email);
+
     @Modifying(flushAutomatically = true)
     @Query("update User u set u.online = :online WHERE u.login = :login")
     void updateCustomerByLogin(String login, Boolean online);

@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS "user"(
     online BOOLEAN NOT NULL,
     email VARCHAR(256) UNIQUE,
     name VARCHAR(128),
-    surname VARCHAR(128)
+    surname VARCHAR(128),
+    nickname VARCHAR(128) UNIQUE
 );
 
 --changeset ssc_tuatara:3

@@ -13,4 +13,10 @@ public class ProfileController {
     public String getProfilePage() {
         return "profile/profile";
     }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/edit")
+    public String getProfileEditPage() {
+        return "profile/edit";
+    }
 }

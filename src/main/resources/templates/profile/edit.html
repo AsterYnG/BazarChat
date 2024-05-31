@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
-    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <link rel="stylesheet" th:href="@{/css/profile-edit.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/sidebar.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
@@ -18,50 +18,50 @@
         <!-- Sidebar with profile picture and links -->
         <div class="profile-sidebar">
             <div class="diagonal-text">USER</div>
-            <img id="image" src="https://st.depositphotos.com/3265665/4462/i/450/depositphotos_44627471-stock-photo-transparent.jpg"
+            <img id="image"
+                 src="https://st.depositphotos.com/3265665/4462/i/450/depositphotos_44627471-stock-photo-transparent.jpg"
                  alt="Profile picture" class="profile-picture">
             <div class="username">grinsdfssdfh</div>
             <ul class="profile-links">
-                <li><a class="under-pic-btn" href="/profile/edit">Редактировать профиль</a></li>
                 <li><a class="under-pic-btn" href="#">Инвентарь</a></li>
             </ul>
         </div>
 
         <!-- Main profile content -->
         <div class="profile-content">
+            <form th:action="@{/profile/edit}" method="post" id="form" class="text-form">
+                <div class="profile-block">
+                    <h2>Имя, фамилия</h2>
+                    <div class="form-container">
+
+                        <input type="text" id="fullName" name="fullName">
+
+                    </div>
+                </div>
+                <div class="profile-block">
+                    <h2>Nickname</h2>
+                    <div class="form-container">
+
+                        <input type="text" id="nickname" name="nickName">
+
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button class="under-pic-btn" type="submit">Сохранить</button>
+                </div>
+            </form>
             <!-- Basic info -->
-            <div class="profile-block profile-info">
-                <ul>
-                    <li><strong>Роль:</strong> <span id="role"></span></li>
-                </ul>
-            </div>
-            <!-- Friends list -->
-            <div class="profile-block profile-friends">
-                <h3>Други</h3>
-                <ul id="friends-list">
-                    <li>Friend 1</li>
-                    <li>Friend 2</li>
-                    <li>Friend 3</li>
-                </ul>
-            </div>
-            <!-- Recent activity -->
-            <div class="profile-block profile-activity">
-                <h3>Последняя активность (Инвентарь)</h3>
-                <ul id="activity-list">
-                    <li>Posted a new article</li>
-                    <li>Commented on a photo</li>
-                    <li>Joined a new group</li>
-                </ul>
-            </div>
+
         </div>
     </div>
+</div>
 
-    <!-- Diagonal User text -->
+<!-- Diagonal User text -->
 
 </div>
 <footer th:replace="~{fragments/footer:: footer}"></footer>
 <script th:src="@{/js/header.js}"></script>
 <script th:src="@{/js/sidebar.js}"></script>
-<script th:src="@{/js/profile-script.js}"></script>
+<script th:src="@{/js/edit-script.js}"></script>
 </body>
 </html>

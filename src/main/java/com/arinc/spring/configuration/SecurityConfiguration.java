@@ -2,6 +2,10 @@ package com.arinc.spring.configuration;
 
 import com.arinc.security.handler.CustomLogoutSuccessHandler;
 import com.arinc.security.service.OidcService;
+import com.arinc.security.tech.filter.AbstractAutoAuthFilter;
+import com.arinc.security.tech.filter.AutoAuthFilter;
+import com.arinc.security.tech.filter.MockFilter;
+import com.arinc.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +14,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableMethodSecurity
@@ -18,11 +23,7 @@ public class SecurityConfiguration  {
     private final OidcService oidcService;
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
     private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
-//    public WebSecurityCustomizer webSecurityCustomizer(){
-//        return web -> web.
-//    }
-
-
+    private final AbstractAutoAuthFilter autoAuthFilter;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -31,6 +32,7 @@ public class SecurityConfiguration  {
                                         "/registration",
                                         "/home",
                                         "/profile",
+                                        "/profile/**",
                                         "/css/**",
                                         "/js/**",
                                         "api/**",
@@ -53,8 +55,12 @@ public class SecurityConfiguration  {
                                         userInfoEndpointConfig.oidcUserService(oidcService))
                                 .successHandler(authenticationSuccessHandler)
                 )
+                .addFilterBefore(autoAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
+
+
 
 
 
