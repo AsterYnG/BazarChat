@@ -14,5 +14,6 @@ public class UserDto {
     String name;
     String email;
     String surname;
+    String nickname;
     boolean online;
 }

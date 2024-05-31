@@ -50,6 +50,7 @@ public class OidcService implements OAuth2UserService<OidcUserRequest, OidcUser>
         String picPath = imageUtils.loadImageByUrl(idToken.getPicture());
         UserOAuthRegistrationDto oAuthUser = UserOAuthRegistrationDto.builder()
                 .userPic(picPath)
+                .email(idToken.getEmail())
                 .login(idToken.getEmail())
                 .password(String.valueOf(Math.random()))
                 .roleId(1)

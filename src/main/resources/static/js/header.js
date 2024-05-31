@@ -9,7 +9,7 @@ function loadUserImage(currentUser) {
     let userPic = document.querySelector(".user-pic");
 
     if (currentUser.userPic === null) {
-        userPic.src = 'images/default.png'
+        userPic.src = '/images/default.png'
     } else {
         userPic.src =currentUser.userPic;
     }
@@ -17,7 +17,7 @@ function loadUserImage(currentUser) {
 }
 
 async function getCurrentUser(){
-    let response = await fetch("api/v1/users/current", {
+    let response = await fetch("/api/v1/users/current", {
         method: 'GET'
     });
     if (response.ok) {

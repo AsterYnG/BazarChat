@@ -3,23 +3,22 @@ package com.arinc.service;
 import com.arinc.database.entity.User;
 import com.arinc.database.repository.UserRepository;
 import com.arinc.dto.UserDto;
+import com.arinc.dto.UserUpdateProfileDto;
 import com.arinc.dto.UserOAuthRegistrationDto;
 import com.arinc.dto.UserRegistrationDto;
 import com.arinc.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,6 +34,16 @@ public class UserService implements UserDetailsService {
     private final UserMapper userMapper;
     private final ImageService imageService;
 
+    public ResponseEntity<UserDto> updateUser(String username, UserUpdateProfileDto userUpdateProfileDto) {
+       return ResponseEntity.ok(userRepository.findByLogin(username)
+               .map(user -> {
+                   user.setNickname(userUpdateProfileDto.getNickName());
+                   user.setName(userUpdateProfileDto.getName());
+                   user.setSurname(userUpdateProfileDto.getSurname());
+                   userRepository.flush();
+                   return findUser(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+               }).get());
+    }
 
     public Optional<UserDto> findUser(String login, String password) {
         var customerEntity = userRepository.findByLoginAndPassword(login, password);
@@ -86,15 +95,16 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByLogin(username)
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email)
                 .map(user -> org.springframework.security.core.userdetails.User.builder()
-                        .username(user.getLogin())
+                        .username(user.getEmail())
                         .password(user.getPassword())
                         .authorities(user.getRole())
                         .build())
-                .orElseThrow(() -> new UsernameNotFoundException("Can't find user: "+ username));
+                .orElseThrow(() -> new UsernameNotFoundException("Can't find user: "+ email));
     }
+
 
 }
 

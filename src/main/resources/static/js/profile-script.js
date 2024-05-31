@@ -1,7 +1,7 @@
 loadProfileData();
 
 async function loadProfileData(){
-    let response = await fetch("api/v1/profile/", {
+    let response = await fetch("/api/v1/profile/", {
         method: 'GET'
     });
     if (response.ok) {
