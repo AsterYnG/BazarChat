@@ -13,6 +13,9 @@ body {
     background-color: rgb(33, 33, 33);
     color: white;
 }
+ul{
+    list-style-type: none;
+}
 
 .content{
     flex: 1;
@@ -65,7 +68,7 @@ a {
     animation: fadeIn 2s ease-in-out;
 }
 
-.profile-sidebar .username {
+.profile-sidebar .nickname {
     font-size: 1.2rem;
     margin-bottom: 1rem;
     display: none;
@@ -94,27 +97,12 @@ a {
     background-color: #333;
     border-radius: 5px;
     animation: fadeIn 2s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
-
-.profile-details ul,
-.profile-friends ul,
-.profile-activity ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.profile-details li,
-.profile-friends li,
-.profile-activity li {
-    margin-bottom: 0.5rem;
-}
-
-.profile-details strong,
-.profile-friends strong,
-.profile-activity strong {
-    display: inline-block;
-    width: 100px;
-    color: #ff9800;
+.profile-block p{
+    margin-left: 40px;
 }
 
 .diagonal-text {

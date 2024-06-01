@@ -20,6 +20,7 @@ public class MessageMapper {
                 .messageId(message.getId())
                 .login(message.getUser().getLogin())
                 .date(message.getDate())
+                .nickname(message.getUser().getNickname())
                 .build();
     }
     public Message mapFrom(MessageCreateDto messageCreateDto){

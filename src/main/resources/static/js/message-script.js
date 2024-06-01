@@ -21,13 +21,13 @@ function printNewAuthor(pContent, message, lastMessage, messageBox) {
     else pAuthor.className = 'message-author';
 
     if (lastMessage === null) {
-        pAuthor.textContent = message.login;
+        pAuthor.textContent = message.nickname;
         messageBox.before(pAuthor);
         return;
     }
 
     if (lastMessage.login !== message.login) {
-        pAuthor.textContent = message.login;
+        pAuthor.textContent = message.nickname;
         messageBox.before(pAuthor);
     }
 }
