@@ -13,7 +13,7 @@ async function loadProfileData() {
 }
 
 function printProfileData(profile) {
-    printUsername(profile);
+    printNickname(profile);
     printImage(profile);
     printRole(profile);
     printProfileDetails(profile);
@@ -25,10 +25,10 @@ function printImage(profile) {
     image.style.opacity = "1";
 }
 
-function printUsername(profile) {
-    let username = document.querySelector(".username");
-    username.textContent = profile.login;
-    username.style.display = "block";
+function printNickname(profile) {
+    let nickname = document.querySelector(".nickname");
+    nickname.textContent = profile.nickname;
+    nickname.style.display = "block";
 }
 
 

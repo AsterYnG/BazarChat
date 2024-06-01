@@ -15,9 +15,12 @@ async function loadProfileData(){
 }
 
 function printProfileData(profile){
-    printUsername(profile);
+    printNickname(profile);
     printImage(profile);
     printRole(profile);
+    printEmail(profile);
+    printFullName(profile);
+    printLogin(profile);
 }
 
 function printImage(profile){
@@ -26,10 +29,27 @@ function printImage(profile){
     image.style.opacity = "1";
 }
 
-function printUsername(profile){
-    let username = document.querySelector(".username");
-    username.textContent = profile.login;
+function printNickname(profile){
+    let username = document.querySelector(".nickname");
+    username.textContent = profile.nickname;
     username.style.display = "block";
+}
+
+function printEmail(profile){
+    let email = document.querySelector("#email");
+    email.textContent = profile.email;
+}
+
+function printLogin(profile){
+    let login = document.querySelector("#login");
+    login.textContent = profile.login;
+}
+
+
+function printFullName(profile){
+    let fullName = document.querySelector("#fullName");
+
+    fullName.textContent = profile.name + " " + profile.surname;
 }
 
 function printRole(profile){

@@ -13,6 +13,7 @@ public class MessageDto implements Comparable<MessageDto> {
     Integer messageId;
     Integer customerId;
     String login;
+    String nickname;
     LocalDateTime date;
 
     @Override
