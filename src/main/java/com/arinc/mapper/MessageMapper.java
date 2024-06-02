@@ -21,6 +21,7 @@ public class MessageMapper {
                 .login(message.getUser().getLogin())
                 .date(message.getDate())
                 .nickname(message.getUser().getNickname())
+                .imagePath(message.getUser().getUserPic())
                 .build();
     }
     public Message mapFrom(MessageCreateDto messageCreateDto){

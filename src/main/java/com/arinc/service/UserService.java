@@ -95,14 +95,14 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        return userRepository.findByLogin(login)
                 .map(user -> org.springframework.security.core.userdetails.User.builder()
-                        .username(user.getEmail())
+                        .username(user.getLogin())
                         .password(user.getPassword())
                         .authorities(user.getRole())
                         .build())
-                .orElseThrow(() -> new UsernameNotFoundException("Can't find user: "+ email));
+                .orElseThrow(() -> new UsernameNotFoundException("Can't find user: "+ login));
     }
 
 

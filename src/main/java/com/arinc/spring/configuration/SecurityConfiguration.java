@@ -31,6 +31,8 @@ public class SecurityConfiguration  {
                                         "/login",
                                         "/registration",
                                         "/home",
+                                        "/*.png",
+                                        "/*.jpg",
                                         "/profile",
                                         "/profile/**",
                                         "/css/**",

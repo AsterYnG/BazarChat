@@ -34,19 +34,12 @@ public class UserMapper {
     }
 
     public User mapFrom(UserRegistrationDto userRegistrationDto) {
-
-
-
-        //        var imageName = customerRegistrationDto.getUserPic().getOriginalFilename();
-//        if (imageName.isEmpty()) {
-//            imageName = "default_user_pic.jpg";
-//        }
         var imagePath = userRegistrationDto.getUserPic().isEmpty() ? null : userRegistrationDto.getUserPic().getOriginalFilename();
         return User.builder()
                 .login(userRegistrationDto.getLogin())
                 .userPic(imagePath)
                 .password(passwordEncoder.encode(userRegistrationDto.getPassword()))
-                .role(roleService.findByRoleName("user").orElse(null))
+                .role(roleService.findByRoleName("USER").orElse(null))
                 .build();
     }
 
