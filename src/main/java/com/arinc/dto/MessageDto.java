@@ -15,6 +15,7 @@ public class MessageDto implements Comparable<MessageDto> {
     String login;
     String nickname;
     LocalDateTime date;
+    String imagePath;
 
     @Override
     public int compareTo(MessageDto nextDto) {

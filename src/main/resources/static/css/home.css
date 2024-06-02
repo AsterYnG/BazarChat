@@ -88,29 +88,64 @@ a{
     padding-right: 10px;
 }
 
+.message-container{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+.message-container.self{
+    align-self: flex-end;
+}
+
 .message {
     background-color: rgb(68, 68, 68);
-    max-width: 70%;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
-    align-self: flex-start;
+    max-width: 70%;
+    margin-left: 32px;
 }
 
-
-.message-author {
-    display: flex;
-    font-weight: bold;
-    align-self: flex-start;
-    margin-bottom: 10px;
-}
-.message-author.self {
-    display: flex;
-    font-weight: bold;
+.message.self {
+    background-color: #ff9000;
+    margin-right: 32px;
+    color: #333;
     align-self: flex-end;
 }
+.author-pic{
+    object-fit: cover;
+    clip-path: circle();
+    height: 30px;
+    width: 30px;
+}
+
+.author-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-self: flex-start;
+}
+
+.author-container.self{
+    align-self: flex-end;
+}
+
+.message-author {
+    font-weight: bold;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.message-author.self{
+    justify-content: flex-end
+}
+
 
 .message-date {
     color: #666;
@@ -125,11 +160,6 @@ a{
     overflow-wrap: break-word;
     margin-top: 5px;
     margin-bottom: 5px;
-}
-.message.self {
-    background-color: #ff9000;
-    align-self: flex-end;
-    color: #333;
 }
 
 .message-form {

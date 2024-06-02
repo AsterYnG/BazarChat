@@ -30,5 +30,10 @@ spring:
               token-uri: https://oauth.vk.com/access_token
               user-info-uri: "https://api.vk.com/method/users.get?v=5.121&fields=sex,city,country,photo_max,has_photo"
               user-name-attribute: first_name
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
 image:
   path: C:/MySpace/LocalStorage/BazarChat/images/
