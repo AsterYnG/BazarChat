@@ -4,6 +4,7 @@ import com.arinc.dto.UserDto;
 import com.arinc.dto.UserUpdateProfileDto;
 import com.arinc.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,18 +16,21 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/v1/profile/")
 @RequiredArgsConstructor
+@Slf4j
 public class ProfileRestController {
     private final UserService userService;
 
     @GetMapping
     public ResponseEntity<UserDto> getProfile(@AuthenticationPrincipal UserDetails userDetails){
         Optional<UserDto> currentUser = userService.findUser(userDetails.getUsername());
+        log.info("Getting user: {} By User: {}", currentUser, userDetails.getUsername());
         return currentUser.map(user -> ResponseEntity.ok().body(user))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/edit")
     public ResponseEntity<UserDto> editFullName(@AuthenticationPrincipal UserDetails userDetails, UserUpdateProfileDto userUpdateDto){
+        log.info("Updating user entity: {} By User: {}", userUpdateDto, userDetails.getUsername());
         return userService.updateUser(userDetails.getUsername(),userUpdateDto);
     }
 

@@ -5,6 +5,7 @@ import com.arinc.dto.UserOAuthRegistrationDto;
 import com.arinc.service.UserService;
 import com.arinc.util.ImageUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
@@ -22,6 +23,7 @@ import java.util.Set;
 
 @RequiredArgsConstructor
 @Component
+@Slf4j
 public class OidcService implements OAuth2UserService<OidcUserRequest, OidcUser> {
     private final UserService userService;
     private final ImageUtils imageUtils;
@@ -38,6 +40,7 @@ public class OidcService implements OAuth2UserService<OidcUserRequest, OidcUser>
         DefaultOidcUser oidcUser = new DefaultOidcUser(userDetails.getAuthorities(), requestOidcUser.getIdToken(), requestOidcUser.getUserInfo());
         Set<Method> userDetailsMethods = Set.of(UserDetails.class.getMethods());
 
+        log.info("Trying to authenticate user with OAuth Server {}", userDetails);
         return (OidcUser) Proxy.newProxyInstance(OidcService.class.getClassLoader(), new Class[]{UserDetails.class, OidcUser.class},
                 (proxy, method, args) ->
                     userDetailsMethods.contains(method)
@@ -55,6 +58,7 @@ public class OidcService implements OAuth2UserService<OidcUserRequest, OidcUser>
                 .password(String.valueOf(Math.random()))
                 .roleId(1)
                 .build();
+        log.info("Creating user with Oauth server: {}", oAuthUser);
         userService.saveUser(oAuthUser);
     }
 

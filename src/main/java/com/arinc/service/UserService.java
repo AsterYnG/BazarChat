@@ -8,6 +8,7 @@ import com.arinc.dto.UserOAuthRegistrationDto;
 import com.arinc.dto.UserRegistrationDto;
 import com.arinc.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 @PreAuthorize("permitAll()")
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class UserService implements UserDetailsService {
 
 
@@ -96,6 +98,7 @@ public class UserService implements UserDetailsService {
     @Transactional
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        log.info("Trying to authenticate user: {} ", login);
         return userRepository.findByLogin(login)
                 .map(user -> org.springframework.security.core.userdetails.User.builder()
                         .username(user.getLogin())
