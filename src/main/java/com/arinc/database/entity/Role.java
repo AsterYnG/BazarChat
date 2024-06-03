@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
-@Data
+@Data()
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

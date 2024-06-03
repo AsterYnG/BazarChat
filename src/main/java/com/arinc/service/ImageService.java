@@ -21,9 +21,7 @@ public class ImageService {
 
 
     public void upload(String imagePath, InputStream content) {
-
         var fullPath = Path.of(BASE_PATH, imagePath);
-
         try (content) {
             var allBytes = content.readAllBytes();
             if (!(allBytes.length == 0)) {
@@ -32,13 +30,5 @@ public class ImageService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @SneakyThrows
-    public byte[] get(String imagePath) {
-        var fullPath = Path.of(BASE_PATH, imagePath);
-        return Files.exists(fullPath)
-                ? Files.readAllBytes(fullPath)
-                : null;
     }
 }

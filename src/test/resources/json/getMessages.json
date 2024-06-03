@@ -1,0 +1,92 @@
+[
+  {
+    "message": "no",
+    "messageId": 4,
+    "customerId": 1,
+    "login": "test",
+    "nickname": "test",
+    "date": "2024-06-08T00:00:00",
+    "imagePath": null
+  },
+  {
+    "message": "shit",
+    "messageId": 5,
+    "customerId": 1,
+    "login": "test",
+    "nickname": "test",
+    "date": "2024-06-08T00:00:00",
+    "imagePath": null
+  },
+  {
+    "message": "holy",
+    "messageId": 6,
+    "customerId": 1,
+    "login": "test",
+    "nickname": "test",
+    "date": "2024-06-08T00:00:00",
+    "imagePath": null
+  },
+  {
+    "message": "mom",
+    "messageId": 7,
+    "customerId": 1,
+    "login": "test",
+    "nickname": "test",
+    "date": "2024-06-08T00:00:00",
+    "imagePath": null
+  },
+  {
+    "message": "dad",
+    "messageId": 8,
+    "customerId": 1,
+    "login": "test",
+    "nickname": "test",
+    "date": "2024-06-08T00:00:00",
+    "imagePath": null
+  },
+  {
+    "message": "fuck",
+    "messageId": 9,
+    "customerId": 1,
+    "login": "test",
+    "nickname": "test",
+    "date": "2024-06-08T00:00:00",
+    "imagePath": null
+  },
+  {
+    "message": "cringe",
+    "messageId": 10,
+    "customerId": 1,
+    "login": "test",
+    "nickname": "test",
+    "date": "2024-06-08T00:00:00",
+    "imagePath": null
+  },
+  {
+    "message": "lol",
+    "messageId": 11,
+    "customerId": 1,
+    "login": "test",
+    "nickname": "test",
+    "date": "2024-06-08T00:00:00",
+    "imagePath": null
+  },
+  {
+    "message": "man",
+    "messageId": 12,
+    "customerId": 1,
+    "login": "test",
+    "nickname": "test",
+    "date": "2024-06-08T00:00:00",
+    "imagePath": null
+  },
+  {
+    "message": "female",
+    "messageId": 13,
+    "customerId": 1,
+    "login": "test",
+    "nickname": "test",
+    "date": "2024-06-08T00:00:00",
+    "imagePath": null
+  }
+]
