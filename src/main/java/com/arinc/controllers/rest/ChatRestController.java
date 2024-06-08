@@ -6,10 +6,7 @@ import com.arinc.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,8 +28,8 @@ public class ChatRestController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping
-    public Optional<MessageDto> saveMessage(MessageCreateDto messageCreateDto){
+    public MessageDto saveMessage(@RequestBody MessageCreateDto messageCreateDto){
         log.info("Invoked /api/v1/messages/ , Saving message: {} ", messageCreateDto);
-        return Optional.of(chatService.saveMessage(messageCreateDto));
+        return chatService.saveMessage(messageCreateDto);
     }
 }

@@ -11,5 +11,4 @@ public class MessageCreateDto {
     String message;
     Integer userId;
     LocalDateTime date;
-
 }

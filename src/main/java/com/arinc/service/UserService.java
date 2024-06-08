@@ -36,40 +36,34 @@ public class UserService implements UserDetailsService {
     private final UserMapper userMapper;
     private final ImageService imageService;
 
-    public ResponseEntity<UserDto> updateUser(String username, UserUpdateProfileDto userUpdateProfileDto) {
-       return ResponseEntity.ok(userRepository.findByLogin(username)
-               .map(user -> {
-                   user.setNickname(userUpdateProfileDto.getNickName());
-                   user.setName(userUpdateProfileDto.getName());
-                   user.setSurname(userUpdateProfileDto.getSurname());
-                   userRepository.flush();
-                   return findUser(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-               }).get());
+    public Optional<UserDto> updateUser(String login, UserUpdateProfileDto userUpdateProfileDto) {
+        return userRepository.findByLogin(login)
+                .map(user -> {
+                    user.setNickname(userUpdateProfileDto.getNickName());
+                    user.setName(userUpdateProfileDto.getName());
+                    user.setSurname(userUpdateProfileDto.getSurname());
+                    userRepository.flush();
+                    return Optional.of(userMapper.mapFrom(user));
+                }).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    public Optional<UserDto> findUser(String login, String password) {
-        var customerEntity = userRepository.findByLoginAndPassword(login, password);
-        return customerEntity.map(userMapper::mapFrom);
-    }
-
-    public Optional<UserDto> findUser(String username){
-        return userRepository.findByLogin(username).map(userMapper::mapFrom);
+    public Optional<UserDto> findUser(String login) {
+        return userRepository.findByLogin(login).map(userMapper::mapFrom);
     }
 
     public List<UserDto> getOnlineUsers() {
         var onlineUsers = userRepository.findCustomersByOnlineIsTrue();
         return onlineUsers.stream()
                 .map(userMapper::mapFrom)
-                .collect(Collectors.toList());
+                .toList();
     }
 
 
-
-    public User saveUser(UserRegistrationDto customerDto){
+    public User saveUser(UserRegistrationDto customerDto) {
         return Optional.of(customerDto)
                 .map(dto -> {
                     try {
-                        imageService.upload(dto.getUserPic().getOriginalFilename(),dto.getUserPic().getInputStream());
+                        imageService.upload(dto.getUserPic().getOriginalFilename(), dto.getUserPic().getInputStream());
                     } catch (IOException e) {
                         throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //TODO: Доделать с обработкой когда картинку не грузят
                     }
@@ -78,21 +72,17 @@ public class UserService implements UserDetailsService {
                 .map(userMapper::mapFrom)
                 .map(userRepository::save)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-
-        //        var customer = customerMapper.mapFrom(customerDto);
-//        imageService.upload(customer.getUserPic(), customerDto.getUserPic().getInputStream());
-//        customerRepository.save(customer);
     }
 
-    public User saveUser(UserOAuthRegistrationDto customerDto){
+    public User saveUser(UserOAuthRegistrationDto customerDto) {
         return Optional.of(customerDto)
                 .map(userMapper::mapFrom)
                 .map(userRepository::save)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
 
-    public void setOnline(String userName, boolean isOnline){
-        userRepository.updateCustomerByLogin(userName,isOnline);
+    public void setOnline(String userName, boolean isOnline) {
+        userRepository.updateCustomerByLogin(userName, isOnline);
     }
 
     @Transactional
@@ -105,7 +95,7 @@ public class UserService implements UserDetailsService {
                         .password(user.getPassword())
                         .authorities(user.getRole())
                         .build())
-                .orElseThrow(() -> new UsernameNotFoundException("Can't find user: "+ login));
+                .orElseThrow(() -> new UsernameNotFoundException("Can't find user: " + login));
     }
 
 

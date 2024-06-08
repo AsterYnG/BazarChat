@@ -9,6 +9,7 @@ import com.arinc.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,6 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableMethodSecurity
 @RequiredArgsConstructor
+@Profile("!test")
 public class SecurityConfiguration  {
     private final OidcService oidcService;
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
@@ -38,6 +40,9 @@ public class SecurityConfiguration  {
                                         "/css/**",
                                         "/js/**",
                                         "api/**",
+                                        "/v3/api-docs/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html",
                                         "/error").permitAll()
                                 .anyRequest().authenticated()
                         )
