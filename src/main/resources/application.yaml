@@ -34,6 +34,6 @@ logging:
   level:
     org:
       springframework:
-        security: INFO
+        security: DEBUG
 image:
   path: C:/MySpace/LocalStorage/BazarChat/images/

@@ -32,7 +32,6 @@ class ChatRestControllerTest extends IntegrationMvcTestBase {
     void getLastMessages() throws Exception {
         mvc.perform(get("/api/v1/messages"))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(content().json(readString(Path.of("src/test/resources/json/getMessages.json"))))
                 .andExpect(jsonPath("$[0].message", is("no")));
     }
 

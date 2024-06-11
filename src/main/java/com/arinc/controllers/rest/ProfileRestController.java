@@ -16,7 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/profile/")
+@RequestMapping("/api/v1/profile/")
 @RequiredArgsConstructor
 @Slf4j
 public class ProfileRestController {
@@ -27,6 +27,12 @@ public class ProfileRestController {
         Optional<UserDto> currentUser = userService.findUser(userDetails.getUsername());
         log.info("Getting user: {} By User: {}", currentUser, userDetails.getUsername());
         return currentUser.map(user -> ResponseEntity.ok().body(user))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{login}")
+    public ResponseEntity<UserDto> getProfileByLogin(@PathVariable String login){
+        return userService.findUser(login).map(user -> ResponseEntity.ok().body(user))
                 .orElse(ResponseEntity.notFound().build());
     }
 

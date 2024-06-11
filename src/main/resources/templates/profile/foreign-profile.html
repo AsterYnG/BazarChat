@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<header th:insert="~{fragments/header :: header}"></header>
+<div th:insert="~{fragments/sidebar:: sidebar}"></div>
+<div class="content">
+    <div class="profile-container">
+        <!-- Sidebar with profile picture and links -->
+        <div class="profile-sidebar">
+            <div class="diagonal-text">USER</div>
+            <img id="image" src="https://st.depositphotos.com/3265665/4462/i/450/depositphotos_44627471-stock-photo-transparent.jpg"
+                 alt="Profile picture" class="profile-picture">
+            <div class="nickname">grinsdfssdfh</div>
+            <ul class="profile-links">
+            </ul>
+        </div>
+
+        <!-- Main profile content -->
+        <div class="profile-content">
+            <!-- Basic info -->
+            <div class="profile-block">
+                <h2>Имя, Фамилия</h2>
+                <p id="fullName"></p>
+            </div>
+            <!-- Friends list -->
+            <div class="profile-block">
+                <h2>Други</h2>
+                <p>Coming soon...</p>
+            </div>
+            <div class="profile-block">
+                <h2>Email</h2>
+                <p id="email"></p>
+            </div>
+            <div class="profile-block">
+                <h2>Login</h2>
+                <p id="login"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diagonal User text -->
+
+</div>
+<footer th:replace="~{fragments/footer:: footer}"></footer>
+<script th:src="@{/js/header.js}"></script>
+<script th:src="@{/js/sidebar.js}"></script>
+<script th:src="@{/js/profile-script.js}"></script>
+</body>
+</html>

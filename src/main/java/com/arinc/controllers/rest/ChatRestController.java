@@ -13,7 +13,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("api/v1/messages")
+@RequestMapping("/api/v1/messages")
 @RequiredArgsConstructor
 @Slf4j
 public class ChatRestController {
