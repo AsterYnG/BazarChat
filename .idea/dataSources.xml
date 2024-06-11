@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="bazarchat@localhost" uuid="d3bf0ca4-8c3c-48cf-9e42-cd50486539af">
+    <data-source source="LOCAL" name="bazarchat@192.168.0.104" uuid="d3bf0ca4-8c3c-48cf-9e42-cd50486539af">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
@@ -14,7 +14,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="@localhost" uuid="2251c837-18e2-4fbf-8c7d-7fb5d888c4d0">
+    <data-source source="LOCAL" name="bazarchat@localhost" uuid="2251c837-18e2-4fbf-8c7d-7fb5d888c4d0">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

@@ -16,7 +16,10 @@ async function getLastMessages() {
 function printNewAuthor(pContent, message, lastMessage, messageBox) {
     let pAuthor = document.createElement("p");
     let image = document.createElement("img");
+    let aRef = document.createElement("a");
     let authorContainer = document.createElement("div");
+    aRef.href = '/profile/' + message.login;
+    aRef.appendChild(image);
     image.src = message.imagePath;
     pAuthor.textContent = message.nickname;
     pAuthor.className = 'message-author';
@@ -27,12 +30,12 @@ function printNewAuthor(pContent, message, lastMessage, messageBox) {
         authorContainer.className = "author-container self"
         pAuthor.className = "message-author self"
         authorContainer.append(pAuthor);
-        authorContainer.append(image);
+        authorContainer.append(aRef);
     }
     else {
         pAuthor.className = "message-author"
         authorContainer.className = "author-container"
-        authorContainer.append(image);
+        authorContainer.append(aRef);
         authorContainer.append(pAuthor);
     }
 
@@ -101,9 +104,16 @@ if (messageForm) {
 } else window.alert("pizdec");
 
 async function sendData(data) {
+    let object = {};
+    data.forEach((value, key) => object[key] = value);
+    let json = JSON.stringify(object);
     return await fetch('/api/v1/messages', {
+        headers:{
+            "Content-Type": "application/json",
+            "X-CSRF-Token": data.get("_csrf")
+        },
         method: 'POST',
-        body: data
+        body: json
     })
 }
 
