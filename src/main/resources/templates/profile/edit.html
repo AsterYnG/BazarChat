@@ -14,22 +14,26 @@
 <header th:insert="~{fragments/header :: header}"></header>
 <div th:insert="~{fragments/sidebar:: sidebar}"></div>
 <div class="content">
-    <div class="profile-container">
-        <!-- Sidebar with profile picture and links -->
-        <div class="profile-sidebar">
-            <div class="diagonal-text">USER</div>
-            <img id="image"
-                 src="https://st.depositphotos.com/3265665/4462/i/450/depositphotos_44627471-stock-photo-transparent.jpg"
-                 alt="Profile picture" class="profile-picture">
-            <div class="nickname">grinsdfssdfh</div>
-            <ul class="profile-links">
-                <li><a class="under-pic-btn" href="#">Инвентарь</a></li>
-            </ul>
-        </div>
+    <form th:action="@{/profile/edit}" method="post" id="form" class="text-form">
+        <div class="profile-container">
+            <!-- Sidebar with profile picture and links -->
+            <div class="profile-sidebar">
+                <input name="userPic" type="file" id="input__file" class="input__file" accept="image/png, image/jpeg" multiple>
+                <label for="input__file" class="input__file-button">
+                    <span class="input__file-icon"> <i class="fa-solid fa-upload"></i></span>
+                </label>
+                <div class="diagonal-text">USER</div>
+                <img id="image"
+                     src="https://st.depositphotos.com/3265665/4462/i/450/depositphotos_44627471-stock-photo-transparent.jpg"
+                     alt="Profile picture" class="profile-picture">
+                <div class="nickname">grinsdfssdfh</div>
+                <ul class="profile-links">
+                    <li><a class="under-pic-btn" href="#">Инвентарь</a></li>
+                </ul>
+            </div>
 
-        <!-- Main profile content -->
-        <div class="profile-content">
-            <form th:action="@{/profile/edit}" method="post" id="form" class="text-form">
+            <!-- Main profile content -->
+            <div class="profile-content">
                 <div class="profile-block">
                     <h2>Имя, фамилия</h2>
                     <div class="form-container">
@@ -49,16 +53,11 @@
                 <div class="button-container">
                     <button class="under-pic-btn" type="submit">Сохранить</button>
                 </div>
-            </form>
-            <!-- Basic info -->
-
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 
-<!-- Diagonal User text -->
-
-</div>
 <footer th:replace="~{fragments/footer:: footer}"></footer>
 <script th:src="@{/js/header.js}"></script>
 <script th:src="@{/js/sidebar.js}"></script>

@@ -60,7 +60,8 @@ a {
 
 /* Style for the form container */
 .text-form {
-
+    display: flex;
+    width: 100%;
 }
 
 /* Style for the input fields */
@@ -110,6 +111,7 @@ a {
     object-fit: cover;
     margin-bottom: 1rem;
     animation: fadeIn 2s ease-in-out;
+    cursor: default;
 }
 
 .profile-sidebar .nickname {
@@ -153,13 +155,21 @@ a {
 
 .diagonal-text {
     position: absolute;
-    margin: -19px 0px 0px 158px;
+    margin: -19px 0px 0px 121px;
     font-size: 2rem;
     font-weight: bold;
     color: rgba(255, 255, 255, 0.1);
     pointer-events: none;
     user-select: none;
     animation: fadeIn 2s ease-in-out;
+}
+
+.input__file{
+    display: none;
+}
+.input__file-button{
+    position: absolute;
+    cursor: pointer;
 }
 
 @keyframes fadeIn {

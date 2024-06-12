@@ -34,7 +34,7 @@ public class UserMapper {
     }
 
     public User mapFrom(UserRegistrationDto userRegistrationDto) {
-        var imagePath = userRegistrationDto.getUserPic().isEmpty() ? null : userRegistrationDto.getUserPic().getOriginalFilename();
+        var imagePath = userRegistrationDto.getUserPic().isEmpty() ? "default.png" : userRegistrationDto.getUserPic().getOriginalFilename();
         return User.builder()
                 .login(userRegistrationDto.getLogin())
                 .userPic(imagePath)

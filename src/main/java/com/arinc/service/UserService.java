@@ -3,26 +3,25 @@ package com.arinc.service;
 import com.arinc.database.entity.User;
 import com.arinc.database.repository.UserRepository;
 import com.arinc.dto.UserDto;
-import com.arinc.dto.UserUpdateProfileDto;
 import com.arinc.dto.UserOAuthRegistrationDto;
 import com.arinc.dto.UserRegistrationDto;
+import com.arinc.dto.UserUpdateProfileDto;
 import com.arinc.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @PreAuthorize("permitAll()")
@@ -42,6 +41,14 @@ public class UserService implements UserDetailsService {
                     user.setNickname(userUpdateProfileDto.getNickName());
                     user.setName(userUpdateProfileDto.getName());
                     user.setSurname(userUpdateProfileDto.getSurname());
+                    if (!userUpdateProfileDto.getUserPic().isEmpty()) {
+                        try {
+                            imageService.upload(userUpdateProfileDto.getUserPic().getOriginalFilename(), userUpdateProfileDto.getUserPic().getInputStream());
+                            user.setUserPic(userUpdateProfileDto.getUserPic().getOriginalFilename());
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                     userRepository.flush();
                     return Optional.of(userMapper.mapFrom(user));
                 }).orElseThrow(() -> new RuntimeException("User not found"));
