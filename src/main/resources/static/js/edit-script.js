@@ -24,6 +24,10 @@ function printImage(profile) {
     image.src = profile.userPic;
     image.style.opacity = "1";
 }
+function printImageUrl(src) {
+    let image = document.querySelector(".profile-picture");
+    image.src = window.URL.createObjectURL(src);
+}
 
 function printNickname(profile) {
     let nickname = document.querySelector(".nickname");
@@ -71,3 +75,13 @@ form.addEventListener("submit",  async function (event) {
     }
 })
 
+const input = document.querySelector("#input__file");
+input.addEventListener("change",updateImage);
+function updateImage(){
+    let files = input.files;
+    if (files.length !== 0){
+        for (let i = 0; i < files.length; i++) {
+            printImageUrl(files[i]);
+        }
+    }
+}

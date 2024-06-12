@@ -3,7 +3,7 @@ loadProfileData();
 async function loadProfileData() {
     let currentLocation = window.location.pathname;
     const resources = currentLocation.split("/");
-    if (resources.length === 4) {
+    if (resources.length === 2) {
         let response = await fetch("/api/v1/profile/", {
             method: 'GET'
         });
