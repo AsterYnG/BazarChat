@@ -1,0 +1,18 @@
+{
+  "name": "bazarchat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AsterYnG/BazarChat.git"
+  },
+  "private": true,
+  "dependencies": {
+    "@stomp/stompjs": "^7.0.0",
+    "kafkajs": "^2.2.4"
+  }
+}

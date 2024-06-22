@@ -1,4 +1,4 @@
-package com.arinc.spring.configuration;
+package com.arinc.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,11 +1,8 @@
-package com.arinc.spring.configuration;
+package com.arinc.config;
 
 import com.arinc.security.handler.CustomLogoutSuccessHandler;
 import com.arinc.security.service.OidcService;
 import com.arinc.security.tech.filter.AbstractAutoAuthFilter;
-import com.arinc.security.tech.filter.AutoAuthFilter;
-import com.arinc.security.tech.filter.MockFilter;
-import com.arinc.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,6 +40,7 @@ public class SecurityConfiguration  {
                                         "/v3/api-docs/**",
                                         "/swagger-ui/**",
                                         "/swagger-ui.html",
+                                        "/global",
                                         "/error").permitAll()
                                 .anyRequest().authenticated()
                         )

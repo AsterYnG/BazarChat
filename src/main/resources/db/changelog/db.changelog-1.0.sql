@@ -15,9 +15,9 @@ CREATE TABLE IF NOT EXISTS "user"(
     role_id INT REFERENCES role(id) NOT NULL,
     online BOOLEAN NOT NULL,
     email VARCHAR(256) UNIQUE,
-    name VARCHAR(128),
-    surname VARCHAR(128),
-    nickname VARCHAR(128) UNIQUE
+    name VARCHAR(128) NOT NULL default '',
+    surname VARCHAR(128) NOT NULL default '',
+    nickname VARCHAR(128)
 );
 
 --changeset ssc_tuatara:3
