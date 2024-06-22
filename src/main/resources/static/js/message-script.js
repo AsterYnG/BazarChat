@@ -1,11 +1,14 @@
+const box = document.getElementById("message-box");
 
+
+
+getLastMessages();
 
 async function getLastMessages() {
     let messages;
     let promise = await fetch("/api/v1/messages");
     if (promise.ok) {
         messages = await promise.json();
-        let box = document.getElementById("message-box");
         for (let i = 0; i < messages.length; i++) {
             printMessage(box, messages[i]);
         }
@@ -143,4 +146,4 @@ async function sendMessage(event) {
         box.value = '';
     }
 }
-setInterval(getLastMessages, 500);
+

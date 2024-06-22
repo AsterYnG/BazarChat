@@ -1,4 +1,16 @@
 spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: chat-group
+    producer:
+      value-serializer: com.arinc.config.kafka.producer.serializer.CustomJsonSerializer
+      properties:
+        spring:
+          json:
+            add:
+              type:
+                headers: false
   web:
     resources:
       static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:C:/MySpace/LocalStorage/BazarChat/images

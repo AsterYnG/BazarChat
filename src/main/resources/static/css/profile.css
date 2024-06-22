@@ -55,7 +55,7 @@ a {
 }
 
 .profile-sidebar {
-    max-width: 250px;
+    max-width: 150px;
     text-align: center;
 }
 
@@ -107,7 +107,7 @@ a {
 
 .diagonal-text {
     position: absolute;
-    margin: -19px 0px 0px 158px;
+    margin: -19px 0px 0px 121px;
     font-size: 2rem;
     font-weight: bold;
     color: rgba(255, 255, 255, 0.1);

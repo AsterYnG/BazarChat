@@ -51,4 +51,4 @@ function userExist(user) {
     return exists;
 }
 
-setInterval(proccessOnlineUsers, 5000);
+// setInterval(proccessOnlineUsers, 5000);

@@ -11,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import static java.lang.Math.random;
+import static java.lang.Math.round;
+
 @Component
 @RequiredArgsConstructor
 public class UserMapper {
@@ -40,6 +43,10 @@ public class UserMapper {
                 .userPic(imagePath)
                 .password(passwordEncoder.encode(userRegistrationDto.getPassword()))
                 .role(roleService.findByRoleName("USER").orElse(null))
+                .nickname("NoName" + round(random() * 1000))
+                .surname("")
+                .name("")
+                .email("")
                 .build();
     }
 
@@ -50,6 +57,9 @@ public class UserMapper {
                 .userPic(userRegistrationDto.getUserPic())
                 .password(passwordEncoder.encode(userRegistrationDto.getPassword()))
                 .role(roleService.findByRoleName("USER").orElse(null))
+                .nickname("NoName" + round(random() * 1000))
+                .surname("")
+                .name("")
                 .build();
     }
 

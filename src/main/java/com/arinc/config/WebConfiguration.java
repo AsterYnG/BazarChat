@@ -1,4 +1,4 @@
-package com.arinc.spring.configuration;
+package com.arinc.config;
 
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 

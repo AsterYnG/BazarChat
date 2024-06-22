@@ -11,6 +11,7 @@ public class UserRegistrationDto {
 
     @NotBlank
     String login;
+    @NotBlank
     String password;
     MultipartFile userPic;
 }
