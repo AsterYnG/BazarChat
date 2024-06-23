@@ -9,7 +9,6 @@ async function getOnlineUsers() {
 }
 
 function deleteOffline(userListFromServer) {
-    //TODO: Добавить функционал с удалением оффлайн пользователей
     const currentUsers = document.querySelectorAll("#user-list .user");
     currentUsers.forEach(userElement => {
         if (!userListFromServer.has(userElement.login)) {
@@ -51,4 +50,4 @@ function userExist(user) {
     return exists;
 }
 
-// setInterval(proccessOnlineUsers, 5000);
+setInterval(proccessOnlineUsers, 5000);

@@ -28,20 +28,19 @@ public class UserRestController {
 
     @PreAuthorize("permitAll()")
     @PostMapping
-    void createCustomer(@Validated UserRegistrationDto userRegistrationDto){
+    void createCustomer(@Validated UserRegistrationDto userRegistrationDto) {
         log.info("Creating user: {}", userRegistrationDto);
         userService.saveUser(userRegistrationDto);
     }
 
     @PreAuthorize("permitAll()")
     @GetMapping("/current")
-    public UserDto getAuthenticatedUser(@AuthenticationPrincipal UserDetails userDetails){
-        if (userDetails != null){
+    public UserDto getAuthenticatedUser(@AuthenticationPrincipal UserDetails userDetails) {
+        if (userDetails != null) {
             log.info("Retrieving user: {}", userDetails.getUsername());
-        return userService.findUser(userDetails.getUsername())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        }
-        else {
+            return userService.findUser(userDetails.getUsername())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
@@ -49,7 +48,7 @@ public class UserRestController {
 
     @PreAuthorize("permitAll()")
     @GetMapping("/online")
-    public List<UserDto> getOnlineUsers(){
+    public List<UserDto> getOnlineUsers() {
         log.info("Retrieving online users");
         return userService.getOnlineUsers();
     }
