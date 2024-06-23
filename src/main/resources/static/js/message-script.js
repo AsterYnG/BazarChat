@@ -1,7 +1,6 @@
 const box = document.getElementById("message-box");
 
 
-
 getLastMessages();
 
 async function getLastMessages() {
@@ -34,8 +33,7 @@ function printNewAuthor(pContent, message, lastMessage, messageBox) {
         pAuthor.className = "message-author self"
         authorContainer.append(pAuthor);
         authorContainer.append(aRef);
-    }
-    else {
+    } else {
         pAuthor.className = "message-author"
         authorContainer.className = "author-container"
         authorContainer.append(aRef);
@@ -53,40 +51,11 @@ function printNewAuthor(pContent, message, lastMessage, messageBox) {
 }
 
 function printMessage(box, message) {
-    let divMessage = document.createElement('div');
-    let pContent = document.createElement('p');
-    let pDate = document.createElement('p');
-    let userLogin = sessionStorage.getItem("userLogin")
-    let messageContainer = document.createElement("div");
-
-    messageContainer.className = 'message-container';
-    pContent.className = 'message-content';
-    pDate.className = 'message-date';
-
-    if (message.login === userLogin) {
-        messageContainer.className = 'message-container self';
-        divMessage.className = "message self";
-    } else{
-        messageContainer.className = 'message-container';
-        divMessage.className = "message";
-    }
-
-    if (!messageExists(message.messageId)) { // Print only new incoming messages
-        let lastMessage = box.lastElementChild;
-        let date = new Date(message.date);
-
-        messageContainer.messageId = message.messageId;
-        messageContainer.login = message.login;
-        pContent.textContent = message.message;
-        pDate.textContent = date.toLocaleTimeString('ru-RU');
-
-
-        box.appendChild(messageContainer);
-        printNewAuthor(pContent, message, lastMessage, messageContainer);
-        messageContainer.append(divMessage);
-        divMessage.append(pContent, pDate)
-        box.scrollTop = box.scrollHeight;
-    }
+   let result = prepareMessage(box,message);
+   if (result) {
+       box.append(result);
+       // box.scrollTop = box.scrollHeight;
+   }
 }
 
 
@@ -111,7 +80,7 @@ async function sendData(data) {
     data.forEach((value, key) => object[key] = value);
     let json = JSON.stringify(object);
     return await fetch('/api/v1/messages', {
-        headers:{
+        headers: {
             "Content-Type": "application/json",
             "X-CSRF-Token": data.get("_csrf")
         },
@@ -139,11 +108,109 @@ async function sendMessage(event) {
     } else {
         let response = await sendData(data);
         if (!response.ok) {
-            window.alert("Form pushing error");
+            window.alert("Войди пожалуйста! ;)");
         }
 
         let box = document.getElementById('messageInput');
         box.value = '';
     }
 }
+
+//SCROLL HANDLER
+
+document.addEventListener('DOMContentLoaded', function () {
+    const chatContainer = document.getElementById('message-box'); // Замените на ваш ID контейнера
+    let isLoading = false;
+
+    chatContainer.addEventListener('scroll', function () {
+        if (chatContainer.scrollTop === 0 && !isLoading) {
+            isLoading = true;
+            loadOlderMessages().then(() => {
+                isLoading = false;
+            }).catch((error) => {
+                console.error('Error loading older messages:', error);
+                isLoading = false;
+            });
+        }
+    });
+
+    function loadOlderMessages() {
+        return new Promise((resolve, reject) => {
+            let firstMessageId = chatContainer.firstElementChild.messageId;
+            fetch('/api/v1/messages/' + firstMessageId, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Обработайте полученные данные и добавьте старые сообщения в контейнер
+                    // Например, data.messages содержит массив старых сообщений
+                    const currentScrollHeight = chatContainer.scrollHeight;
+                    data.forEach(message => {
+                        printOldMessage(box, message);
+                    });
+
+                    // Обновите позицию прокрутки
+                    chatContainer.scrollTop = chatContainer.scrollHeight - currentScrollHeight;
+
+                    resolve();
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    }
+});
+
+function printOldMessage(box, message) {
+
+    let result = prepareMessage(box, message);
+    if (result) {
+        box.prepend(result);
+        box.scrollTop = box.scrollHeight;
+    }
+}
+
+function prepareMessage(box, message) {
+    let divMessage = document.createElement('div');
+    let pContent = document.createElement('p');
+    let pDate = document.createElement('p');
+    let userLogin = sessionStorage.getItem("userLogin")
+    let messageContainer = document.createElement("div");
+
+    messageContainer.className = 'message-container';
+    pContent.className = 'message-content';
+    pDate.className = 'message-date';
+
+    if (message.login === userLogin) {
+        messageContainer.className = 'message-container self';
+        divMessage.className = "message self";
+    } else {
+        messageContainer.className = 'message-container';
+        divMessage.className = "message";
+    }
+    if (!messageExists(message.messageId)) { // Print only new incoming messages
+        let lastMessage = box.lastElementChild;
+        let date = new Date(message.date);
+
+        messageContainer.messageId = message.messageId;
+        messageContainer.login = message.login;
+        pContent.textContent = message.message;
+        pDate.textContent = date.toLocaleTimeString('ru-RU');
+
+        printNewAuthor(pContent, message, lastMessage, messageContainer);
+        messageContainer.append(divMessage);
+        divMessage.append(pContent, pDate)
+        return messageContainer;
+    }
+    return null;
+}
+
 

@@ -11,6 +11,8 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<Message,Integer> {
     List<Message> findTop10ByOrderByIdDesc();
+
+    List<Message> findMessagesByIdBetween(Integer minId, Integer maxId);
 }
 
 

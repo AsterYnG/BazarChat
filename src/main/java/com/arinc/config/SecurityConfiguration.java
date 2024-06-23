@@ -1,5 +1,6 @@
 package com.arinc.config;
 
+import com.arinc.security.AuthEntryPoint;
 import com.arinc.security.handler.CustomLogoutSuccessHandler;
 import com.arinc.security.service.OidcService;
 import com.arinc.security.tech.filter.AbstractAutoAuthFilter;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -23,9 +25,11 @@ public class SecurityConfiguration  {
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
     private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
     private final AbstractAutoAuthFilter autoAuthFilter;
+    private final AuthEntryPoint authEntryPoint;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth-> auth.requestMatchers(
                                         "/login",
                                         "/registration",
@@ -60,6 +64,7 @@ public class SecurityConfiguration  {
                                         userInfoEndpointConfig.oidcUserService(oidcService))
                                 .successHandler(authenticationSuccessHandler)
                 )
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(authEntryPoint))
                 .addFilterBefore(autoAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

@@ -47,4 +47,16 @@ public class ChatService {
                 .toList();
     }
 
+    public List<MessageDto> getLastMessagesFromId(int id) {
+        int idMin;
+        if (id < 10){
+            idMin = 1;
+        }
+        else idMin = id - 10;
+        return messageRepository.findMessagesByIdBetween(idMin,id)
+                .stream()
+                .map(messageMapper::mapFrom)
+                .sorted(Comparator.naturalOrder())
+                .toList();
+    }
 }
