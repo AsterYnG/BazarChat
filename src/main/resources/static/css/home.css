@@ -157,7 +157,7 @@ a{
 
 .message-content {
     text-align: left;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -193,6 +193,19 @@ a{
 .online-users h2{
     text-align: center;
     margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .online-users {
+        display: none;
+    }
+    .chat-container{
+        width: 100%;
+    }
+    .container{
+        margin: 10px;
+    }
+
 }
 
 

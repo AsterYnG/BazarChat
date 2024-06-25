@@ -14,11 +14,11 @@ body {
     color: white;
 }
 
-ul{
+ul {
     list-style-type: none;
 }
 
-.content{
+.content {
     flex: 1;
     flex-direction: row;
     display: flex;
@@ -30,13 +30,14 @@ a {
     text-decoration: none;
     color: inherit;
 }
-.button-container{
+
+.button-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.under-pic-btn{
+.under-pic-btn {
     display: block;
     background-color: rgb(33, 33, 33);
     color: white;
@@ -47,11 +48,11 @@ a {
     transition: box-shadow 0.3s ease;
 }
 
-.under-pic-btn:hover{
+.under-pic-btn:hover {
     background-color: #333;
 }
 
-.form-container{
+.form-container {
     display: flex;
     width: 60%;
     flex-direction: row;
@@ -130,7 +131,6 @@ a {
 }
 
 
-
 .profile-content {
     display: flex;
     flex-direction: column;
@@ -151,6 +151,13 @@ a {
     flex-direction: row;
     align-items: center;
 }
+.profile-content-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-self: flex-start;
+    overflow: auto;
+}
 
 
 .diagonal-text {
@@ -164,10 +171,11 @@ a {
     animation: fadeIn 2s ease-in-out;
 }
 
-.input__file{
+.input__file {
     display: none;
 }
-.input__file-button{
+
+.input__file-button {
     position: absolute;
     cursor: pointer;
 }
@@ -179,4 +187,15 @@ a {
     to {
         opacity: 1;
     }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        margin: 0 auto;
+    }
+    .profile-sidebar{
+        margin-right: 0;
+    }
+
 }

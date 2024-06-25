@@ -3,6 +3,7 @@ const box = document.getElementById("message-box");
 
 getLastMessages();
 
+
 async function getLastMessages() {
     let messages;
     let promise = await fetch("/api/v1/messages");
@@ -54,7 +55,7 @@ function printMessage(box, message) {
    let result = prepareMessage(box,message);
    if (result) {
        box.append(result);
-       // box.scrollTop = box.scrollHeight;
+       box.scrollTop = box.scrollHeight;
    }
 }
 

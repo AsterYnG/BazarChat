@@ -52,6 +52,7 @@ a {
     flex: 1;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
 }
 
 .profile-sidebar {
@@ -106,8 +107,8 @@ a {
 }
 
 .diagonal-text {
-    position: absolute;
-    margin: -19px 0px 0px 121px;
+    position: relative;
+    margin: -4px 0px -13px 111px;
     font-size: 2rem;
     font-weight: bold;
     color: rgba(255, 255, 255, 0.1);
@@ -123,4 +124,17 @@ a {
     to {
         opacity: 1;
     }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        margin: 0 auto;
+    }
+    .content{
+        margin-top: 0;
+    }
+    body{
+        justify-content: space-between;
+    }
+
 }
