@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS "user"(
     user_pic VARCHAR(256),
     role_id INT REFERENCES role(id) NOT NULL,
     online BOOLEAN NOT NULL,
-    email VARCHAR(256) UNIQUE,
+    email VARCHAR(256),
     name VARCHAR(128) NOT NULL default '',
     surname VARCHAR(128) NOT NULL default '',
     nickname VARCHAR(128)
