@@ -1,4 +1,7 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -47,5 +50,6 @@ logging:
     org:
       springframework:
         security: DEBUG
+
 image:
   path: C:/MySpace/LocalStorage/BazarChat/images/
