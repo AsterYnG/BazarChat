@@ -1,7 +1,31 @@
 //Инициализация елементов на странице
 const onlineUsersContainer = document.getElementById("user-list");
 
+document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible') {
+        const userId = sessionStorage.getItem('userId');
+        let online = true;
+        fetch("/api/v1/online/" + userId, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'POST',
+            body: JSON.stringify(online)
+        })
+    }
 
+    if (document.visibilityState === 'hidden') {
+        const userId = sessionStorage.getItem('userId');
+        let online = false;
+        fetch("/api/v1/online/" + userId, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'POST',
+            body: JSON.stringify(online)
+        })
+    }
+});
 
 async function getOnlineUsers() {
     let response = await fetch("api/v1/users/online");

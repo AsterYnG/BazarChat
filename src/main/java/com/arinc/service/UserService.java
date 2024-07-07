@@ -92,6 +92,14 @@ public class UserService implements UserDetailsService {
         userRepository.updateCustomerByLogin(userName, isOnline);
     }
 
+    public void setOnline(Integer userId, boolean isOnline) {
+        userRepository.findById(userId).map(user -> {
+            user.setOnline(isOnline);
+            userRepository.flush();
+            return user;
+        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
     @Transactional
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
