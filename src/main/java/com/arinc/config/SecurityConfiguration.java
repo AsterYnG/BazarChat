@@ -49,12 +49,11 @@ public class SecurityConfiguration  {
                                 .anyRequest().authenticated()
                         )
                 .formLogin(login -> login.loginPage("/login")
-                                .successHandler(authenticationSuccessHandler)
+                                .defaultSuccessUrl("/home")
                         )
                 .logout(logout->
                         logout
                                 .logoutUrl("/logout")
-                                .logoutSuccessHandler(customLogoutSuccessHandler)
                                 )
                 .httpBasic(Customizer.withDefaults())
                 .oauth2Login(oauth->
