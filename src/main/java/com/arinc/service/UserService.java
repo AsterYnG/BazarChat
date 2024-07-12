@@ -58,6 +58,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findByLogin(login).map(userMapper::mapFrom);
     }
 
+    public Optional<UserDto> findUserById(Integer id) {
+        return userRepository.findById(id).map(userMapper::mapFrom);
+    }
+
     public List<UserDto> getOnlineUsers() {
         var onlineUsers = userRepository.findCustomersByOnlineIsTrue();
         return onlineUsers.stream()
