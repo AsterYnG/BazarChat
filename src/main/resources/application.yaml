@@ -49,7 +49,12 @@ logging:
   level:
     org:
       springframework:
-        security: DEBUG
+        security: TRACE
 
 image:
   path: C:/MySpace/LocalStorage/BazarChat/images/
+jwt:
+  secret-token: 5223455223455211!BazarJWTgThJJwwERtBASAAAAAZAReCO2dcFSSDF
+  token-expiration: 1
+server:
+  port: 8081
