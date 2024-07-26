@@ -2,9 +2,12 @@ package com.arinc.config;
 
 import com.arinc.security.AuthEntryPoint;
 import com.arinc.security.handler.CustomLogoutSuccessHandler;
+import com.arinc.security.jwt.filter.JwtAuthenticationFilter;
 import com.arinc.security.service.OidcService;
+import com.arinc.security.jwt.strategy.JwtAuthSessionStrategy;
 import com.arinc.security.tech.filter.AbstractAutoAuthFilter;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.filters.CorsFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -27,6 +30,8 @@ public class SecurityConfiguration  {
     private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
     private final AbstractAutoAuthFilter autoAuthFilter;
     private final AuthEntryPoint authEntryPoint;
+    private final JwtAuthSessionStrategy jwtAuthSessionStrategy;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -63,9 +68,12 @@ public class SecurityConfiguration  {
                                         userInfoEndpointConfig.oidcUserService(oidcService))
                                 .successHandler(authenticationSuccessHandler)
                 )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        .addSessionAuthenticationStrategy(jwtAuthSessionStrategy))
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(authEntryPoint))
                 .addFilterBefore(autoAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
