@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -30,41 +31,38 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        var cookies = request.getCookies();
-        //Getting jwt cookie from request, if empty invoke other filters
-        if (cookies == null) {
-            doFilter(request, response, filterChain);
-            return;
-        }
-        var maybeCookie = Arrays.stream(cookies).filter(cookie -> cookie.getName().equals("jwt-auth-token"))
-                .findFirst();
-        if (maybeCookie.isEmpty()) {
-            doFilter(request, response, filterChain);
-            return;
-        }
         try {
+            var cookies = request.getCookies();
+            //Getting jwt cookie from request, if empty invoke other filters
+            if (cookies == null) {
+                doFilter(request, response, filterChain);
+                return;
+            }
+            var maybeCookie = Arrays.stream(cookies).filter(cookie -> cookie.getName().equals("jwt-auth-token"))
+                    .findFirst();
+            if (maybeCookie.isEmpty()) {
+                doFilter(request, response, filterChain);
+                return;
+            }
             JwtToken jwtToken = jwtTokenDeserializer.deserialize(maybeCookie.get().getValue());
             var userDetails = userService.loadUserByUsername(jwtToken.getLogin());
 
             if (jwtService.validateToken(jwtToken)) {
-                SecurityContext context = SecurityContextHolder.createEmptyContext();
-
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
                         userDetails.getAuthorities()
                 );
-
+                SecurityContext context = SecurityContextHolder.createEmptyContext();
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 context.setAuthentication(authToken);
                 SecurityContextHolder.setContext(context);
             }
-            doFilter(request, response, filterChain);
         } catch (Exception e) {
             unSuccessAuthentication(request, response, filterChain);
             return;
         }
-
+        doFilter(request, response, filterChain);
     }
 
     private void unSuccessAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
