@@ -58,3 +58,6 @@ jwt:
   token-expiration: 1
 server:
   port: 8081
+bazar:
+  domain:
+    bazar-web: http://localhost:8080
