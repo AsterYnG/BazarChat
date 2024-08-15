@@ -2,6 +2,9 @@ package com.arinc.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JoinFormula;
+
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
