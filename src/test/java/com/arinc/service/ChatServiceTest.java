@@ -103,7 +103,7 @@ class ChatServiceTest {
         List<Message> messages = List.of(messageEntity2, messageEntity1);
         List<MessageDto> messagesResult = List.of(messageDto1, messageDto2);
 
-        when(messageRepository.findTop10ByOrderByIdDesc())
+        when(messageRepository.findTop20ByOrderByIdDesc())
                 .thenReturn(messages);
         when(messageMapper.mapFrom(messageEntity1)).thenReturn(messageDto1);
         when(messageMapper.mapFrom(messageEntity2)).thenReturn(messageDto2);

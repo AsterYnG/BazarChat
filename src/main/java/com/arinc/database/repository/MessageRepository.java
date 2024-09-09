@@ -10,7 +10,7 @@ import java.util.List;
 @Transactional
 @Repository
 public interface MessageRepository extends JpaRepository<Message,Integer> {
-    List<Message> findTop10ByOrderByIdDesc();
+    List<Message> findTop20ByOrderByIdDesc();
 
     List<Message> findMessagesByIdBetween(Integer minId, Integer maxId);
 }

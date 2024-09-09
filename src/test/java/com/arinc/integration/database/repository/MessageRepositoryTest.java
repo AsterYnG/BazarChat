@@ -22,7 +22,7 @@ class MessageRepositoryTest extends IntegrationTestBase {
 
     @Test
     void findTop10ByOrderByIdDesc() {
-        List<Message> messages = messageRepository.findTop10ByOrderByIdDesc();
+        List<Message> messages = messageRepository.findTop20ByOrderByIdDesc();
         Assertions.assertThat(messages).isNotEmpty()
                 .hasSize(10);
     }
