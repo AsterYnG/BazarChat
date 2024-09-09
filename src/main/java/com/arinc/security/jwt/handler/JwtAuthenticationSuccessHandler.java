@@ -35,9 +35,9 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
             var serializedToken = jwtTokenSerializer.serialize(token);
             var cookie = new Cookie("jwt-auth-token", serializedToken);
             cookie.setPath("/");
-            cookie.setDomain("localhost");
+            cookie.setDomain("192.168.1.23");
             cookie.setHttpOnly(true);
-            cookie.setSecure(true);
+            cookie.setSecure(false);
             cookie.setMaxAge((int) ChronoUnit.MILLIS.between(Instant.now(), token.getExpiresAt().toInstant()));
             response.addCookie(cookie);
             response.sendRedirect(bazarWebAddress + "/home");

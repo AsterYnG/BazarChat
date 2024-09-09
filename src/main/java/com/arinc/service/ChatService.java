@@ -41,7 +41,7 @@ public class ChatService {
 
     @PreAuthorize("permitAll()")
     public List<MessageDto> getLastMessages() {
-        return messageRepository.findTop10ByOrderByIdDesc().stream()
+        return messageRepository.findTop20ByOrderByIdDesc().stream()
                 .map(messageMapper::mapFrom)
                 .sorted(Comparator.reverseOrder())
                 .toList();
