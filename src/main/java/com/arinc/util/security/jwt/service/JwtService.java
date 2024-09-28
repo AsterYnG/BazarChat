@@ -1,20 +1,15 @@
-package com.arinc.security.jwt.service;
+package com.arinc.util.security.jwt.service;
 
 
 import com.arinc.database.repository.UserRepository;
-import com.arinc.security.jwt.deserializer.JwtTokenDeserializer;
-import com.arinc.security.jwt.serializer.JwtTokenSerializer;
-import com.arinc.security.jwt.token.JwtToken;
-import io.jsonwebtoken.Jwts;
+import com.arinc.util.security.jwt.token.JwtToken;
 import io.jsonwebtoken.impl.DefaultClaims;
-import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -63,7 +58,7 @@ public class JwtService {
         cookie.setPath("/");
         cookie.setDomain(null);
         cookie.setHttpOnly(true);
-        cookie.setSecure(true);
+        cookie.setSecure(false);
         cookie.setMaxAge(0);
 
         response.addCookie(cookie);

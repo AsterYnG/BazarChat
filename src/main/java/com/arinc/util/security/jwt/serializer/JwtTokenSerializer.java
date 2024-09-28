@@ -1,17 +1,13 @@
-package com.arinc.security.jwt.serializer;
+package com.arinc.util.security.jwt.serializer;
 
-import com.arinc.security.jwt.token.JwtToken;
+import com.arinc.util.security.jwt.token.JwtToken;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 @RequiredArgsConstructor

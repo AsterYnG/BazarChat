@@ -7,6 +7,8 @@ import com.arinc.dto.UserOAuthRegistrationDto;
 import com.arinc.dto.UserRegistrationDto;
 import com.arinc.dto.UserUpdateProfileDto;
 import com.arinc.mapper.UserMapper;
+import com.arinc.util.exceptions.ApiException;
+import com.arinc.util.exceptions.enums.ErrorType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -114,7 +116,7 @@ public class UserService implements UserDetailsService {
                         .password(user.getPassword())
                         .authorities(user.getRole())
                         .build())
-                .orElseThrow(() -> new UsernameNotFoundException("Can't find user: " + login));
+                .orElseThrow(() -> new UsernameNotFoundException("Пользователь %s не найден".formatted(login)));
     }
 
 

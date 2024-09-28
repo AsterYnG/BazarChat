@@ -1,12 +1,13 @@
 package com.arinc.config;
 
-import com.arinc.security.AuthEntryPoint;
-import com.arinc.security.handler.AuthSuccessHandler;
-import com.arinc.security.handler.CustomLogoutSuccessHandler;
-import com.arinc.security.jwt.filter.JwtAuthenticationFilter;
-import com.arinc.security.jwt.handler.JwtAuthenticationSuccessHandler;
-import com.arinc.security.service.OidcService;
-import com.arinc.security.tech.filter.AbstractAutoAuthFilter;
+import com.arinc.util.security.exceptions.handler.CustomAuthExceptionHandler;
+import com.arinc.util.security.handler.AuthFailureHandler;
+import com.arinc.util.security.handler.AuthSuccessHandler;
+import com.arinc.util.security.handler.CustomLogoutSuccessHandler;
+import com.arinc.util.security.jwt.filter.JwtAuthenticationFilter;
+import com.arinc.util.security.jwt.handler.JwtAuthenticationSuccessHandler;
+import com.arinc.util.security.service.OidcService;
+import com.arinc.util.security.tech.filter.AbstractAutoAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -30,10 +31,11 @@ public class SecurityConfiguration {
     private final AuthSuccessHandler authenticationSuccessHandler;
     private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
     private final AbstractAutoAuthFilter autoAuthFilter;
-    private final AuthEntryPoint authEntryPoint;
+    private final CustomAuthExceptionHandler authEntryPoint;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CorsConfigurationSource corsConfigurationSource;
     private final JwtAuthenticationSuccessHandler jwtAuthenticationSuccessHandler;
+    private final AuthFailureHandler authFailureHandler;
 
     @Value("${bazar.domain.bazar-web}")
     private String bazarWebAddress;
@@ -60,13 +62,14 @@ public class SecurityConfiguration {
                 .formLogin(login -> login.
                         defaultSuccessUrl(bazarWebAddress + "/home")
                         .successHandler(jwtAuthenticationSuccessHandler)
+                        .failureHandler(authFailureHandler)
                 )
                 .logout(logout ->
                         logout
                                 .logoutUrl("/logout")
                                 .logoutSuccessHandler(customLogoutSuccessHandler)
                 )
-                .httpBasic(Customizer.withDefaults())
+                .httpBasic(AbstractHttpConfigurer::disable)
                 .oauth2Login(oauth ->
                         oauth.loginPage("/login")
                                 .defaultSuccessUrl(bazarWebAddress + "/home")

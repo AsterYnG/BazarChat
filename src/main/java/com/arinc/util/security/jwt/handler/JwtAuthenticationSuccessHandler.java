@@ -1,8 +1,8 @@
-package com.arinc.security.jwt.handler;
+package com.arinc.util.security.jwt.handler;
 
-import com.arinc.security.jwt.serializer.JwtTokenSerializer;
-import com.arinc.security.jwt.service.JwtService;
-import com.arinc.security.jwt.token.JwtToken;
+import com.arinc.util.security.jwt.serializer.JwtTokenSerializer;
+import com.arinc.util.security.jwt.service.JwtService;
+import com.arinc.util.security.jwt.token.JwtToken;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

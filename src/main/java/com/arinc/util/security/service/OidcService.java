@@ -1,4 +1,4 @@
-package com.arinc.security.service;
+package com.arinc.util.security.service;
 
 import com.arinc.dto.UserDto;
 import com.arinc.dto.UserOAuthRegistrationDto;

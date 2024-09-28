@@ -1,8 +1,8 @@
-package com.arinc.security.jwt.filter;
+package com.arinc.util.security.jwt.filter;
 
-import com.arinc.security.jwt.deserializer.JwtTokenDeserializer;
-import com.arinc.security.jwt.service.JwtService;
-import com.arinc.security.jwt.token.JwtToken;
+import com.arinc.util.security.jwt.deserializer.JwtTokenDeserializer;
+import com.arinc.util.security.jwt.service.JwtService;
+import com.arinc.util.security.jwt.token.JwtToken;
 import com.arinc.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -13,7 +13,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
