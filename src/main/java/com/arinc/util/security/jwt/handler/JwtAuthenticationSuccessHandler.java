@@ -24,6 +24,8 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
 
     @Value("${bazar.domain.bazar-web}")
     private String bazarWebAddress;
+    @Value("${bazar.domain.bazar-web-ip}")
+    private String bazarWebIp;
 
     private final JwtService jwtService;
     private final JwtTokenSerializer jwtTokenSerializer;
@@ -35,10 +37,11 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
             var serializedToken = jwtTokenSerializer.serialize(token);
             var cookie = new Cookie("jwt-auth-token", serializedToken);
             cookie.setPath("/");
-            cookie.setDomain("192.168.1.23");
+            cookie.setDomain(bazarWebIp);
             cookie.setHttpOnly(true);
             cookie.setSecure(false);
             cookie.setMaxAge((int) ChronoUnit.MILLIS.between(Instant.now(), token.getExpiresAt().toInstant()));
+//            cookie.setAttribute("SameSite", "None");
             response.addCookie(cookie);
             response.sendRedirect(bazarWebAddress + "/home");
         }

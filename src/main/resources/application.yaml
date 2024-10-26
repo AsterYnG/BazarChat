@@ -62,4 +62,6 @@ server:
   port: 8081
 bazar:
   domain:
-    bazar-web: http://192.168.1.23:8080
+    bazar-web: http://192.168.1.12:8080
+    bazar-web-ip: 192.168.1.12
+    bazar-web-origin: 192.168.1.12:8080
