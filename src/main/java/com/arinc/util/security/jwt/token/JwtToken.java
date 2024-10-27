@@ -1,4 +1,4 @@
-package com.arinc.security.jwt.token;
+package com.arinc.util.security.jwt.token;
 
 import io.jsonwebtoken.Claims;
 import lombok.Builder;

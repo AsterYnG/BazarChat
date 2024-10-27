@@ -1,4 +1,4 @@
-package com.arinc.security.handler;
+package com.arinc.util.security.handler;
 
 import com.arinc.service.UserService;
 import jakarta.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.arinc.security.tech.filter;
+package com.arinc.util.security.tech.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

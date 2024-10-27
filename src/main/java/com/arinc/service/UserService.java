@@ -16,7 +16,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
@@ -114,7 +113,7 @@ public class UserService implements UserDetailsService {
                         .password(user.getPassword())
                         .authorities(user.getRole())
                         .build())
-                .orElseThrow(() -> new UsernameNotFoundException("Can't find user: " + login));
+                .orElseThrow(() -> new UsernameNotFoundException("Пользователь %s не найден".formatted(login)));
     }
 
 
