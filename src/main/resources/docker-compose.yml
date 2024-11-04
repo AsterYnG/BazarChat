@@ -1,0 +1,39 @@
+#Запуск локальной бд + keycloak
+version: '3.6'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+       POSTGRES_USER: 'postgres'
+       POSTGRES_PASSWORD: 'postgres'
+       POSTGRES_DB: 'keycloak_db'
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+
+  keycloak:
+    image: docker.io/bitnami/keycloak:latest
+    container_name: keycloak
+    environment:
+      KEYCLOAK_DATABASE_HOST: 'postgres'
+      KEYCLOAK_DATABASE_VENDOR: 'postgresql'
+      KEYCLOAK_DATABASE_PORT: "5432"
+      KEYCLOAK_DATABASE_NAME: 'keycloak_db'
+      KEYCLOAK_DATABASE_USER: 'postgres'
+      KEYCLOAK_DATABASE_PASSWORD: 'postgres'
+      KEYCLOAK_ADMIN: 'admin'
+      KEYCLOAK_ADMIN_PASSWORD: 'admin'
+      KEYCLOAK_CREATE_ADMIN_USER: 'true'
+    ports:
+      - '8084:8080'
+    volumes:
+      - keycloak-data:/opt/bitnami/keycloak
+    depends_on:
+      - postgres
+
+volumes:
+  keycloak-data:
+  postgres-data:
